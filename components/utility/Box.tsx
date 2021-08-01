@@ -19,6 +19,7 @@ ${space}
 ${layout}
 ${color}
 ${flex}
+${border}
 ${flexbox}
 ${background}
 ${typography}
