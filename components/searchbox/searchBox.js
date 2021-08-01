@@ -46,7 +46,7 @@ class SearchBox extends React.Component {
             transform: "translate(50%,-50%)"
         }
         return(
-            <div>
+
                 <form style={form}>
                     <input type="text" placeholder="جستجو" style={input}/>
                     <div style={button}>
@@ -57,7 +57,7 @@ class SearchBox extends React.Component {
                         </svg>
                     </div>
                 </form>
-            </div>
+
         )
     }
 }

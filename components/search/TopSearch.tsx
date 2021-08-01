@@ -14,11 +14,12 @@ export const TopSearch: React.FC<Props> = (props)=>{
             backgroundRepeat={"no-repeat"}
             backgroundSize={"300px 300px"}
             height={'365px'}
+            justifyContent={'space-between'}
+            alignItems={'center'}
             backgroundPosition={'left center'}
         >
 
-        <Box display={'flex'} bg={'lipstick'} backgroundImage={"url('/bg/Path 135.svg')"} height={'365px'}>
-            <SearchBox/>
+                <SearchBox/>
         </Box>
     )
 }
