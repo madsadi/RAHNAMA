@@ -10,14 +10,17 @@ import {
     ColorProps,
     LayoutProps,
     SpaceProps,
-    BorderProps
+    BorderProps,
+    typography, TypographyProps, BackgroundProps, background
 } from 'styled-system'
 
-let Box = styled("div").attrs(props=>({className:props.className}))<FlexboxProps|ColorProps|LayoutProps|SpaceProps|BorderProps >`
+let Box = styled("div").attrs(props=>({className:props.className}))<FlexboxProps|ColorProps|LayoutProps|SpaceProps|BorderProps|TypographyProps | BackgroundProps>`
 ${space}
 ${layout}
 ${color}
 ${flex}
 ${flexbox}
+${background}
+${typography}
 `
 export default Box

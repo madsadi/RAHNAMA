@@ -1,6 +1,17 @@
 import React, {ButtonHTMLAttributes} from "react";
 import styled from 'styled-components'
-import {color, layout, flex, flexbox, border, space} from 'styled-system'
+import {
+    color,
+    layout,
+    flex,
+    flexbox,
+    border,
+    space,
+    SpaceProps,
+    typography,
+    TypographyProps,
+    FlexboxProps, FlexProps, ColorProps, LayoutProps, BorderProps
+} from 'styled-system'
 import {t} from '../../locales'
 import Box from "../utility/Box";
 
@@ -13,11 +24,12 @@ const Button=styled("button")<any>({
     alignItems:'center',
 }, color, flex, flexbox, border, space)
 
-const ButtonTextLink=styled.span`
+const ButtonTextLink=styled.span<any>`
     &{ font-size: 15px;
         font-weight:300;
-        width: max-content;
-        margin-right: 10px
+        font-family: dana;
+        margin-right: 5px;
+        flex: 1 1 80px;
     }
     &:after {
         content:"|";
@@ -26,37 +38,35 @@ const ButtonTextLink=styled.span`
  
 `
 
-const TextLink=styled('div')<any>({
-            fontFamily: 'Dana',
+const TextLink=styled('div')<FlexboxProps|ColorProps|LayoutProps|SpaceProps|BorderProps|TypographyProps >({
+            fontFamily: 'dana',
             fontSize: '15px',
-            fontWeight: '300',
-            textAlign: 'left',
-            width:"mex-content",
-            flex:"1 1 100px",
+            fontWeight: 300,
             fontStretch: 'extra-expanded'
-        },space)
+        } ,space, typography, flex, flexbox, layout)
 
 interface Props{
 
 }
 export const Links: React.FC<Props> = (props)=>{
-    return <Box alignItems={'center'} display={'flex'}  color={'white'} >
-               <Button mr={20} flex={"1 1 160px"} display={'flex'} justifyContent={'space-around'} border={'none'} borderRadius={20}  color={'white'}>
-                   <ButtonTextLink>
+    return <Box flex={'3 1'} alignItems={'center'} display={'flex'}  justifyContent={'flex-start'} color={'white'} >
+               <Button mr={20} flex={"0 1 160px"} display={'flex'} justifyContent={'space-around'} border={'none'} borderRadius={20}  color={'white'}>
+                   <ButtonTextLink flex={'1 1 80px'}>
                          {t("wizard.register")}
                    </ButtonTextLink>
                    <img src={'/icons/Iconly-curved-plus.svg'} width={30} height={30}  className={'icon'} alt=""/>
                </Button>
-
-
-                <TextLink mr={20}>
-                    {t('wizard.register')}
+                <TextLink display={'flex'}  alignItems={'center'} textAlign={[ 'center', 'center', 'left' ]} mr={'30px'}>
+                    <ButtonTextLink flex={'1 1 80px'}>
+                        {t("menu.profile")}
+                    </ButtonTextLink>
+                    <img src={'/icons/Iconly_Curved_Profile.svg'} width={24} height={24}  className={'icon'} alt=""/>
                 </TextLink>
-                <TextLink mr={20}>
-                    {t('wizard.register')}
+                <TextLink textAlign={[ 'center', 'center', 'left' ]} mr={'30px'}>
+                    {t('menu.magazine')}
                 </TextLink>
-                <TextLink mr={20}>
-                    {t('wizard.register')}
+                <TextLink textAlign={[ 'center', 'center', 'left' ]} mr={'30px'}>
+                    {t('menu.hardPaper')}
                 </TextLink>
            </Box>
 }
