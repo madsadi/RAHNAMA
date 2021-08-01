@@ -1,10 +1,16 @@
 export default {
     colors: {
-        black: '#000e1a',
+        lipstick: '#db143d',
+        paleGrey: '#e8e8ec',
         white: '#fff',
-        blue: '#007ce0',
+        purplish_brown: '#474546',
+        butterscotch: '#fcc155',
         navy: '#004175',
     },
+    sizes:{
+        container:1640,
+    },
+    breakpoints:['576px','768px','992px','1200px'],
     zIndex:{
         dropdown:           1000 ,
         sticky:             1020 ,
