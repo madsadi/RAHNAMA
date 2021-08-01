@@ -2,6 +2,10 @@ import React from 'react';
 
 class Card extends React.Component{
     render() {
+        const wizard={
+            backgroundColor: "#f5f6fa",
+            direction: "rtl"
+        }
 
         const row={
             display: "flex",
@@ -89,7 +93,7 @@ class Card extends React.Component{
 
 
         return (
-            <div >
+            <div style={wizard}>
                 <div className="row" style={row}>
                     <div className="card" style={contain}>
                         <div style={card}>
