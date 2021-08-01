@@ -17,7 +17,13 @@ export const AppBar: React.FC<Props> = (props)=>{
               height={'90px'}
           >
                 <Box className={'container'}  maxWidth={'container'}>
-                    <Box display={"flex"} pt={"24px"} pb={'13px'} justifyContent={"space-between"} borderBottom={`1px solid`} borderColor={'white'}>
+                    <Box
+                        display={"flex"}
+                        pt={"24px"}
+                        pb={'13px'}
+                        justifyContent={"space-between"}
+                        borderBottom={'1px solid white'}
+                    >
                         <Links/>
                         
                         <Box flex={'1 1 190px'}  color={"white"} display={'flex'} alignItems={'center'} justifyContent={'flex-end'}>

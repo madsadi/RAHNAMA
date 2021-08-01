@@ -30,6 +30,8 @@ const ButtonTextLink=styled.span<any>`
         font-family: dana;
         margin-right: 5px;
         flex: 1 1 80px;
+        display: flex;
+        align-items: center;
     }
     &:after {
         content:"|";
@@ -56,16 +58,16 @@ export const Links: React.FC<Props> = (props)=>{
                    </ButtonTextLink>
                    <img src={'/icons/Iconly-curved-plus.svg'} width={30} height={30}  className={'icon'} alt=""/>
                </Button>
-                <TextLink display={'flex'}  alignItems={'center'} textAlign={[ 'center', 'center', 'left' ]} mr={'30px'}>
+                <TextLink display={'flex'}  alignItems={'center'} textAlign={[ 'center', 'center', 'center', 'left' ]} mr={'30px'}>
                     <ButtonTextLink flex={'1 1 80px'}>
                         {t("menu.profile")}
                     </ButtonTextLink>
                     <img src={'/icons/Iconly_Curved_Profile.svg'} width={24} height={24}  className={'icon'} alt=""/>
                 </TextLink>
-                <TextLink textAlign={[ 'center', 'center', 'left' ]} mr={'30px'}>
+                <TextLink textAlign={[ 'center', 'center', 'center', 'left' ]} mr={'30px'}>
                     {t('menu.magazine')}
                 </TextLink>
-                <TextLink textAlign={[ 'center', 'center', 'left' ]} mr={'30px'}>
+                <TextLink textAlign={[ 'center', 'center', 'center', 'left' ]} mr={'30px'}>
                     {t('menu.hardPaper')}
                 </TextLink>
            </Box>
