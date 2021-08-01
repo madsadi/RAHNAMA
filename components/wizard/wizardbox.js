@@ -93,7 +93,7 @@ class Card extends React.Component{
 
 
         return (
-            <div style={wizard}>
+            <div className={'container'} style={wizard}>
                 <div className="row" style={row}>
                     <div className="card" style={contain}>
                         <div style={card}>
