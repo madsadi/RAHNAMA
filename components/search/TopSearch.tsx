@@ -1,13 +1,20 @@
 import React from "react";
 import Box from "../utility/Box";
 import SearchBox from "../searchbox/searchBox";
+import styled from "styled-components";
+import {background,color, BackgroundProps, ColorProps} from "styled-system";
 
 interface Props{
 
 }
+
+const SearchArea=styled(Box)<BackgroundProps| ColorProps>`
+    ${background}
+    ${color}
+`
 export const TopSearch: React.FC<Props> = (props)=>{
     return (
-        <Box
+        <SearchArea
             display={'flex'}
             bg={'lipstick'}
             backgroundImage={"url('/bg/Path 135.svg')"}
@@ -20,6 +27,6 @@ export const TopSearch: React.FC<Props> = (props)=>{
         >
 
                 <SearchBox/>
-        </Box>
+        </SearchArea>
     )
 }

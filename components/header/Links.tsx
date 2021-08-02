@@ -10,10 +10,15 @@ import {
     SpaceProps,
     typography,
     TypographyProps,
-    FlexboxProps, FlexProps, ColorProps, LayoutProps, BorderProps
+    FlexboxProps, ColorProps, LayoutProps, BorderProps
 } from 'styled-system'
 import {t} from '../../locales'
-import Box from "../utility/Box";
+
+const Box=styled.div<FlexboxProps | LayoutProps|ColorProps>`
+    ${flexbox}
+    ${layout}
+    ${color}
+`
 
 const Button=styled("button")<any>({
     backdropFilter: 'blur',
