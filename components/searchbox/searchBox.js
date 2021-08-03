@@ -165,6 +165,10 @@ class SearchBox extends React.Component {
         this.setState({width: !this.state.width});
     }
 
+    empty = (e) => {
+        this.setState({value: ''})
+    }
+
     render() {
 
         const searchicon={
@@ -176,13 +180,14 @@ class SearchBox extends React.Component {
         }
 
         const cross={
-            display: this.state.isToggle ? 'block':'none',
             position: "absolute",
             top: "50%",
             transform: "translate(0,-50%)",
             left: "16%",
             cursor: "pointer",
-            zIndex: "2"
+            zIndex: "2",
+            background: "none",
+            border: "none"
         }
 
         const del = {
@@ -229,13 +234,15 @@ class SearchBox extends React.Component {
         return(
             <div style={{margin: "auto"}}>
                 <Form>
-                    <Input onClick={this.drop} onChange={this.drop} style={{ boxShadow: this.state.isToggle ? '2px 7px 60px grey':'none' }} type="text" placeholder="جستجو"/>
+                    <Input value={ this.state.value } onClick={this.drop} onChange={this.drop} style={{ boxShadow: this.state.isToggle ? '2px 7px 60px grey':'none' }} type="text" placeholder="جستجو"/>
                     <div className="cubespinner" style={{ display: this.state.isToggle ? 'none':'block' }}>
                         <div className="face1">استخدام</div>
                         <div className="face2">آپارتمان</div>
                         <div className="face3">خودروسواری</div>
                     </div>
-                    <Cross style={cross}/>
+                    <button style={cross} type="reset" >
+                        <Cross style={{ display: this.state.isToggle ? 'block':'none' }}/>
+                    </button>
                     <Button>
                         <Search style={searchicon}/>
                     </Button>
@@ -313,18 +320,18 @@ class SearchBox extends React.Component {
                     </Drop>
                 </Form>
                 <Category>
-            <Pill>خودرو سواری</Pill>
-            <Pill>آپارتمان</Pill>
-            <Pill>استخدام</Pill>
-            <Pill>خودرو سواری</Pill>
-            <Pill>آپارتمان</Pill>
-            <Pill>استخدام</Pill>
-            <Pill>خودرو سواری</Pill>
-            <Pill>آپارتمان</Pill>
-            <Pill>استخدام</Pill>
-        </Category>
+                    <Pill>خودرو سواری</Pill>
+                    <Pill>آپارتمان</Pill>
+                    <Pill>استخدام</Pill>
+                    <Pill>خودرو سواری</Pill>
+                    <Pill>آپارتمان</Pill>
+                    <Pill>استخدام</Pill>
+                    <Pill>خودرو سواری</Pill>
+                    <Pill>آپارتمان</Pill>
+                    <Pill>استخدام</Pill>
+                </Category>
             </div>
-    )
+        )
     }
 }
 
