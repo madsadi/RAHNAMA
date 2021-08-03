@@ -65,6 +65,14 @@ const Drop = styled.div `
             padding-top: 40px;
             z-index: 1;
             overflow-y: scroll;
+           
+`;
+
+const DropLayer=styled.div`
+            position:relative;
+            height: 469px;
+            left:0
+            right:0;
             
             &::after{
             content: '';
@@ -73,10 +81,10 @@ const Drop = styled.div `
             height: 100px;
             left: 0;
             width: 100%;
-            bottom: 0;
+            bottom: 469px;
             position: absolute;
             } 
-`;
+`
 
 const Li = styled.li`
     display: flex;
@@ -116,7 +124,6 @@ const Pill = styled.div`
 `;
 
 const Brows = styled.div`
-    display: flex;
     background-color: #d1d1d1;
     border: 1px solid current;
     border-radius: 7px;
@@ -125,7 +132,7 @@ const Brows = styled.div`
     position: relative;
     font-size: 11px;
     cursor: pointer;
-    width: 110px;
+    width: auto;
 `
 
 const Content = styled.div(props=>({
@@ -135,19 +142,27 @@ const Content = styled.div(props=>({
     marginRight: '30px',
 }),layout)
 
+const Option = styled.div`
+    padding: 4px 6px;
+    background-color: #474546;
+    color: white;
+    border: 1px solid current;
+    border-radius: 7px;
+    opacity: 68%;
+    margin: 5px;
+`
+
 
 
 class SearchBox extends React.Component {
-    state = { isToggle: false, width:'auto' };
+    state = { isToggle: false, width: false };
 
     drop = (e) => {
         this.setState({isToggle: !this.state.isToggle });
     }
 
-    scale () {
-        this.setState((e)=>{
-            return { width:e.width ==='100%'? '110px':'100%' }
-        })
+    scale = (e) => {
+        this.setState({width: !this.state.width});
     }
 
     render() {
@@ -200,13 +215,18 @@ class SearchBox extends React.Component {
             marginRight: "10px",
             backgroundColor: "#474546",
             borderRadius: "6px",
-            left: "10px",
+            left: "0"
         }
 
         return(
             <div style={{margin: "auto"}}>
                 <Form>
-                    <Input onChange={this.drop} style={{ boxShadow: this.state.isToggle ? '2px 7px 60px grey':'none' }} type="text" placeholder="جستجو"/>
+                    <Input onClick={this.drop} onChange={this.drop} style={{ boxShadow: this.state.isToggle ? '2px 7px 60px grey':'none' }} type="text" placeholder="جستجو"/>
+                    <div className="cubespinner" style={{ display: this.state.isToggle ? 'none':'block' }}>
+                        <div className="face1">استخدام</div>
+                        <div className="face2">آپارتمان</div>
+                        <div className="face3">خودروسواری</div>
+                    </div>
                     <Cross style={cross}/>
                     <Button>
                         <Search style={searchicon}/>
@@ -223,13 +243,20 @@ class SearchBox extends React.Component {
                             </Li>
                             <Li>
                                 <Mutepin style={pin1}/>
-                                <Content width={this.state.width}>
+                                <Content style={{ width: this.state.width ? '100%':'110px' }}>
                                     <span>آپارتمان</span>
                                     <Span>آپارتمان</Span>
-                                    <Brows onClick={this.scale.bind(this)}>
-                                        فیلتر آپارتمان
-                                        <Dropdown style={dropdown}/>
-
+                                    <Brows onClick={this.scale} style={{ marginTop: this.state.width ? '10px':'0'}}>
+                                        <div style={{display: "flex",position: "relative"}}>
+                                            فیلتر آپارتمان
+                                            <Dropdown style={dropdown}/>
+                                        </div>
+                                        <div style={{flexFlow: "row wrap", display: this.state.width ? 'flex':'none'}}>
+                                            <Option>قیمت از 200 میلیون تومان تا 500 میلیون تومان</Option>
+                                            <Option>متراژ از 100 متر تا 500 متر</Option>
+                                            <Option>متراژ از 100 متر تا 500 متر</Option>
+                                            <Option>قیمت از 200 میلیون تومان تا 500 میلیون تومان</Option>
+                                        </div>
                                     </Brows>
                                 </Content>
                                 <Delete style={del}/>
