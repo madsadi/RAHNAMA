@@ -187,7 +187,15 @@ class SearchBox extends React.Component {
 
         const del = {
             position: "absolute",
-            top: "50%",
+            top: '50%',
+            transform: "translate(0,-50%)",
+            left: "0",
+            cursor: "pointer"
+        }
+
+        const del1 = {
+            top: this.state.width ? '20%':'50%',
+            position: "absolute",
             transform: "translate(0,-50%)",
             left: "0",
             cursor: "pointer"
@@ -259,7 +267,7 @@ class SearchBox extends React.Component {
                                         </div>
                                     </Brows>
                                 </Content>
-                                <Delete style={del}/>
+                                <Delete style={del1}/>
                             </Li>
                             <Li>
                                 <Mutepin style={pin1}/>
