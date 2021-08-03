@@ -5,6 +5,6 @@ import {
 } from 'styled-system'
 
 let Container = styled("div").attrs(props=>({className:'container'}))<LayoutProps>`
-${layout({maxWidth:[800,1025,1180,1640]})}
+${layout}
 `
 export default Container
