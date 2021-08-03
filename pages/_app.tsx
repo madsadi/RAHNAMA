@@ -1,6 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import {ThemeSystem} from "../utils/system";
+import '../components/wizard/wizardstyle.css';
+import '../components/searchbox/searchBox.css';
 
 function MyApp({ Component, pageProps }: AppProps) {
 

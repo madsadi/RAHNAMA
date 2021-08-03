@@ -1,17 +1,15 @@
 import React from 'react';
+import Box from "../utility/Box";
+import {marginTop} from "styled-system";
+
 
 class Card extends React.Component{
     render() {
-        const wizard={
-            backgroundColor: "#f5f6fa",
-            direction: "rtl"
-        }
 
         const row={
             display: "flex",
             flexDirection: "row",
-            flexWrap: "wrap"
-
+            flexWrap: "wrap",
         }
 
         const card={
@@ -23,6 +21,7 @@ class Card extends React.Component{
         }
 
         const contain={
+            direction:'rtl',
             flex: "25%",
             maxWidth: "25%",
             padding: "8px"
@@ -93,7 +92,7 @@ class Card extends React.Component{
 
 
         return (
-            <div style={wizard}>
+            <Box className={'container'} maxWidth={'container'} style={{marginTop: "30px"}}>
                 <div className="row" style={row}>
                     <div className="card" style={contain}>
                         <div style={card}>
@@ -508,7 +507,7 @@ class Card extends React.Component{
                         </div>
                     </div>
                 </div>
-            </div>
+            </Box>
         )
     }
 }
