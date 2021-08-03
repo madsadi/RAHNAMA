@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from "../utility/Box";
+import {marginTop} from "styled-system";
 
 
 class Card extends React.Component{
@@ -8,8 +9,7 @@ class Card extends React.Component{
         const row={
             display: "flex",
             flexDirection: "row",
-            flexWrap: "wrap"
-
+            flexWrap: "wrap",
         }
 
         const card={
@@ -92,7 +92,7 @@ class Card extends React.Component{
 
 
         return (
-            <Box className={'container'} maxWidth={'container'} >
+            <Box className={'container'} maxWidth={'container'} style={{marginTop: "30px"}}>
                 <div className="row" style={row}>
                     <div className="card" style={contain}>
                         <div style={card}>
