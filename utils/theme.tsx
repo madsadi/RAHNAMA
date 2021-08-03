@@ -7,10 +7,8 @@ export default {
         butterscotch: '#fcc155',
         navy: '#004175',
     },
-    sizes:{
-        container:1640,
-    },
-    breakpoints:['576px','768px','992px','1200px'],
+
+    breakpoints:['1200px','1400px','1920px'],
     zIndex:{
         dropdown:           1000 ,
         sticky:             1020 ,

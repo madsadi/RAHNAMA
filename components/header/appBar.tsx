@@ -50,7 +50,7 @@ export const AppBar: React.FC<Props> = (props)=>{
               color={'white'}
               height={'90px'}
           >
-                <Container className={'container'}  maxWidth={'container'}>
+                <Container>
                     <NavBarBox
                         display={"flex"}
                         pt={"24px"}
