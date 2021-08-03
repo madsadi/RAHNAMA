@@ -128,7 +128,7 @@ const Brows = styled.div`
     border: 1px solid current;
     border-radius: 7px;
     opacity: 68%;
-    padding: 3px 15px;
+    padding: 10px 15px;
     position: relative;
     font-size: 11px;
     cursor: pointer;
