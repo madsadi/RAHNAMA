@@ -40,3 +40,16 @@ a {
 .col{
   flex-basis: 0;
 }
+@media (max-width: 1200px) {
+  .col{
+    flex: 50% !important;
+    max-width: 50% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .col {
+    flex: 100% !important;
+    max-width: 100% !important;
+  }
+}
