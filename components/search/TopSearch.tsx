@@ -3,6 +3,7 @@ import Box from "../utility/Box";
 import SearchBox from "../searchbox/searchBox";
 import styled from "styled-components";
 import {background,color, BackgroundProps, ColorProps} from "styled-system";
+import SearchInput from "./SearchInput";
 
 interface Props{
 
@@ -26,7 +27,7 @@ export const TopSearch: React.FC<Props> = (props)=>{
             backgroundPosition={'left center'}
         >
 
-                <SearchBox/>
+                <SearchInput values={['استخدام','آپارتمان', 'خودروسواری']}/>
         </SearchArea>
     )
 }

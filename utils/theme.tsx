@@ -8,7 +8,7 @@ const theme= {
         navy: '#004175',
     },
 
-    breakpoints:['1200px','1440px','1920px'],
+    breakpoints:['1200px','1440px','1800px'],
     zIndex:{
         dropdown:           1000 ,
         sticky:             1020 ,

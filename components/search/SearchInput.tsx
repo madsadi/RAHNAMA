@@ -1,11 +1,14 @@
 import React, {useState} from "react";
 import styled from "styled-components";
-import {shadow, ShadowProps} from "styled-system";
+import {display, DisplayProps, layout, shadow, ShadowProps} from "styled-system";
+import Search from "../../public/icons/iconly_light_outline_search.svg";
 
 const Form = styled.form `
     position: relative;
     margin: auto;
     display: flex;
+    flex: 1 1 100%;
+    max-width:800px;
 `;
 
 const Input = styled.input<HTMLInputElement| ShadowProps>`
@@ -43,24 +46,26 @@ const Button = styled.div`
 
 `;
 
-const Drop = styled.div `
-            position: absolute;
-            top: 40px;
-            width: 95%;
-            height: 469px;
-            background-color: white;
-            float: center;
-            direction: rtl;
-            right: 50%;
-            transform: translate(50%,0);
-            border-bottom-right-radius: 15px;
-            border-bottom-left-radius: 15px;
-            box-shadow: 6px 7px 9px #57000000;
-            padding: 17px;
-            padding-top: 40px;
-            z-index: 1;
-            overflow-y: scroll;
-           
+const Drop = styled.div <DisplayProps>`
+            {
+                position: absolute;
+                top: 40px;
+                width: 95%;
+                height: 469px;
+                background-color: white;
+                float: center;
+                direction: rtl;
+                right: 50%;
+                transform: translate(50%,0);
+                border-bottom-right-radius: 15px;
+                border-bottom-left-radius: 15px;
+                box-shadow: 6px 7px 9px #57000000;
+                padding: 17px;
+                padding-top: 40px;
+                z-index: 1;
+                overflow-y: scroll;
+            }
+            ${display}         
 `;
 
 const DropLayer=styled.div`
@@ -68,7 +73,6 @@ const DropLayer=styled.div`
             height: 469px;
             left:0
             right:0;
-            
             &::after{
             content: '';
             display: block;
@@ -80,33 +84,101 @@ const DropLayer=styled.div`
             position: absolute;
             } 
 `
+
+const CubeBox=styled.div`
+     {
+         position: absolute;
+         right: 13%;
+         z-index: 2;
+         top: 8px;
+         text-align: right !important;
+         direction: rtl;
+         animation: spincube ease-in-out infinite 8s;
+         -webkit-animation: spincube ease-in-out infinite 8s;
+         -moz-animation: spincube ease-in-out infinite 8s;
+         -ms-animation: spincube ease-in-out infinite 8s;
+         transform-style: preserve-3d;
+         transform-origin:50% 50% 50%;
+         }
+     & div{
+         position:absolute;
+        width: auto;
+        height:40px;
+        color:#109393;
+        outline: none;
+        border: none;
+     }
+      & .face-1{
+        color:#db143d;
+        -webkit-transform:translateZ(40px);
+        -moz-transform:translateZ(40px);
+        -ms-transform:translateZ(40px);
+        transform:translateZ(30px);
+        -webkit-backface-visibility: hidden;
+        }
+    
+        & .face-2{
+            color:#db143d;
+            -webkit-transform: rotateX(120deg) translateZ(30px);
+            -moz-transform: rotateX(120deg) translateZ(30px);
+            -ms-transform: rotateX(120deg) translateZ(30px);
+            transform: rotateX(120deg) translateZ(30px);
+            -webkit-backface-visibility: hidden;
+        }
+        & .face-3{
+            color:#db143d;
+            -webkit-transform:rotateX(240deg)  translateZ(30px);
+            -moz-transform:rotateX(240deg)  translateZ(30px);
+            -ms-transform:rotateX(240deg)  translateZ(30px);
+            transform:rotateX(240deg)  translateZ(30px);
+            -webkit-backface-visibility: hidden;
+        }
+     
+    
+    ${layout}
+`
+const SearchIcon=styled(Search)`
+        position: "absolute",
+        right: "50%",
+        top: "50%",
+        transform: "translate(50%,-50%)",
+        height: "20px"
+`
+
 type SearchProps={
-    values: [string]
+    values: string[]
 }
 const SearchInput: React.FC<SearchProps> = (props)=>{
     const [isToggle, setToggle]=useState(false);
     const [value, setValue]=useState('')
-    const [width, setWidth]=useState(false)
+
 
     function drop(){
         setToggle(isToggle=>!isToggle)
     }
 
-   function scale(){
-     setWidth(width=>!width)
-    }
+
 
     function empty(){
         setValue('')
     }
     const shadow= isToggle ? '2px ,7px ,60px, grey':'none'
     return  (
-        <Form>
+        <Form >
             <Input value={value} onClick={drop} onChange={drop} boxShadow={{shadow}} type="text" placeholder="جستجو"/>
-            <div className="cubespinner">
+            <CubeBox>
+                {props.values.map((str,index)=>{
+                    return <div className={`face-${index+1%4}`}>{str}</div>
+                })}
+            </CubeBox>
+            <Button>
+                <SearchIcon />
+            </Button>
+            <Drop display={isToggle ? 'block':'none' }>
+                <ul style={{listStyleType: "none"}}>
 
-            </div>
-            {props.values}
+                </ul>
+            </Drop>
         </Form>
     )
 }
