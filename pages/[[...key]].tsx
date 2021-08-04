@@ -8,6 +8,9 @@ import {loadAdvertises} from "../requests/homePage";
 import InfiniteScroll from "react-infinite-scroll-component";
 import {QueryFunctionContext, useInfiniteQuery} from "react-query";
 import {useRouter} from "next/router";
+import Container from "../components/utility/Container";
+import Col from "../components/utility/Card";
+import {Post} from "../types";
 interface Props {
     posts:[object],
     perPage:number,
@@ -53,17 +56,30 @@ const Home: React.FC<Props> = (props) => {
                     hasMore={hasNextPage ?? false}
                     loader={'loading...'}
                 >
+                    <Container>
+                        <div className="row">
+                            {data?.pages.map(page=>{
+                                return page.data.map((post:Post)=>{
+                                    return (
+                                        <Col>
+                                            {post.name}
+                                        </Col>
+                                    )
+                                })
+                            })}
 
+                        </div>
+                    </Container>
 
                 </InfiniteScroll>
-                <Card/>
+
             </Box>
     )
 }
 
 export default Home
 
-// @ts-ignore
+
 export const getServerSideProps: GetServerSideProps = async (context) => {
     let agent = context.req.headers['user-agent'];
 

@@ -3,13 +3,17 @@ import type { AppProps } from 'next/app'
 import {ThemeSystem} from "../utils/system";
 import '../components/wizard/wizardstyle.css';
 import '../components/searchbox/searchBox.css';
+import QueryProviderNiazmandiha from "../utils/query";
 
 function MyApp({ Component, pageProps }: AppProps) {
 
   return (
-      <ThemeSystem>
-        <Component {...pageProps} />
-      </ThemeSystem>
+      <QueryProviderNiazmandiha>
+          <ThemeSystem>
+              <Component {...pageProps} />
+          </ThemeSystem>
+      </QueryProviderNiazmandiha>
+
 
   )
 }

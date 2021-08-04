@@ -1,4 +1,4 @@
-export default {
+const theme= {
     colors: {
         lipstick: '#db143d',
         paleGrey: '#e8e8ec',
@@ -8,7 +8,7 @@ export default {
         navy: '#004175',
     },
 
-    breakpoints:['1200px','1400px','1920px'],
+    breakpoints:['1200px','1440px','1920px'],
     zIndex:{
         dropdown:           1000 ,
         sticky:             1020 ,
@@ -22,3 +22,4 @@ export default {
     },
 
 }
+export default theme
