@@ -17,6 +17,7 @@ import {
 } from "styled-system";
 import Container from "../utility/Container";
 import Box from "../utility/Box";
+import Image from 'next/image'
 
 interface Props{
 
@@ -60,9 +61,9 @@ export const AppBar: React.FC<Props> = (props)=>{
                     >
                         <Links/>
                         
-                        <FlexBox flex={'1 1 190px'}  color={"white"} display={'flex'} alignItems={'center'} justifyContent={'flex-end'}>
+                        <FlexBox flex={'0 1 245px'}  color={"white"} display={'flex'} alignItems={'center'} justifyContent={'flex-end'}>
                             <Typo  fontSize={20} fontWeight={300} mr={10}>{t('text-logo')}</Typo>
-                            <img width={30} height={30} src="logo.svg" alt="niazmandiha"/>
+                            <Image width={30} height={30} src="/logo.svg" alt="niazmandiha"/>
                         </FlexBox>
                     </NavBarBox>
                 </Container>

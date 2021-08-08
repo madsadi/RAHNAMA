@@ -26,8 +26,10 @@ export const TopSearch: React.FC<Props> = (props)=>{
             alignItems={'center'}
             backgroundPosition={'left center'}
         >
+                <Box px={15} display={'flex'} width={'100%'}>
+                    <SearchInput values={['استخدام','آپارتمان', 'خودروسواری']}/>
+                </Box>
 
-                <SearchInput values={['استخدام','آپارتمان', 'خودروسواری']}/>
         </SearchArea>
     )
 }

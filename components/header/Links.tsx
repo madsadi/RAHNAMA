@@ -13,6 +13,7 @@ import {
     FlexboxProps, ColorProps, LayoutProps, BorderProps
 } from 'styled-system'
 import {t} from '../../locales'
+import Image from 'next/image'
 
 const Box=styled.div<FlexboxProps | LayoutProps|ColorProps>`
     ${flexbox}
@@ -61,13 +62,13 @@ export const Links: React.FC<Props> = (props)=>{
                    <ButtonTextLink flex={'1 1 80px'}>
                          {t("wizard.register")}
                    </ButtonTextLink>
-                   <img src={'/icons/Iconly-curved-plus.svg'} width={30} height={30}  className={'icon'} alt=""/>
+                   <Image src={'/icons/Iconly-curved-plus.svg'} width={30} height={30}  className={'icon'} alt=""/>
                </Button>
                 <TextLink display={'flex'}  alignItems={'center'} textAlign={[ 'center', 'center', 'center', 'left' ]} mr={'30px'}>
                     <ButtonTextLink flex={'1 1 80px'}>
                         {t("menu.profile")}
                     </ButtonTextLink>
-                    <img src={'/icons/Iconly_Curved_Profile.svg'} width={24} height={24}  className={'icon'} alt=""/>
+                    <Image src={'/icons/Iconly_Curved_Profile.svg'} width={24} height={24}  className={'icon'} alt=""/>
                 </TextLink>
                 <TextLink textAlign={[ 'center', 'center', 'center', 'left' ]} mr={'30px'}>
                     {t('menu.magazine')}

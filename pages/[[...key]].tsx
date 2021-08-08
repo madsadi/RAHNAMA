@@ -59,9 +59,9 @@ const Home: React.FC<Props> = (props) => {
                     <Container>
                         <div className="row">
                             {data?.pages.map(page=>{
-                                return page.data.map((post:Post)=>{
+                                return page.data.map((post:Post,index:number)=>{
                                     return (
-                                        <Col>
+                                        <Col key={index}>
                                             {post.name}
                                         </Col>
                                     )

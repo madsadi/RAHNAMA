@@ -108,3 +108,13 @@ a {
     transform: rotateX(360deg);
   }
 }
+/* Hide scrollbar for Chrome, Safari and Opera */
+.scroll-d-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.scroll-d-none {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}

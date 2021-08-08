@@ -1,15 +1,15 @@
 import React, {useState} from "react";
-import {SearchItem} from '../../types'
+import {SearchItemType} from '../../types'
 import Mutepin from "../../public/icons/push_pin_mute.svg";
 import Delete from "../../public/icons/iconly_curved_close_square.svg";
 import styled from "styled-components";
-import {layout, space, SpaceProps} from "styled-system";
+import {flexbox, FlexboxProps, layout, space, SpaceProps} from "styled-system";
 import Dropdown from "../../public/icons/iconly_curved_arrow_left_circle.svg";
 import Box from "../utility/Box";
 
-const Pin=styled(Mutepin)`
+const Pin=styled(Mutepin)<HTMLElement>`
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translate(0,-50%);
     marginLeft: 22px;
     width: 2;
@@ -33,11 +33,11 @@ const Content = styled.div(props=>({
 const SpanCategory = styled.span`
     opacity: 58%;
     font-size: 15px;
+    margin-top: 6px;
 `;
 const DeleteIcon=styled(Delete)({
-
     position: "absolute",
-    top: '50%',
+    top: '40%',
     transform: "translate(0,-50%)",
     left: "0",
     cursor: "pointer"
@@ -54,7 +54,7 @@ const DropDownIcon=styled(Dropdown)({
     left: "0"
 })
 
-const Brows = styled.div<{onclick:Function} | SpaceProps>`
+const Brows = styled.div<HTMLDivElement | SpaceProps>`
     background-color: #d1d1d1;
     border: 1px solid current;
     border-radius: 7px;
@@ -76,7 +76,29 @@ const Option = styled.div`
     opacity: 68%;
     margin: 5px;
 `
-const SearchItem:React.FC<SearchItem>=(props)=>{
+
+const Li=styled.li`
+    {  
+    display: flex;
+    position: relative;
+    font-family: Dana-Medium;
+    color: #474546;
+    font-size: 16px;
+    margin-bottom: 12px;
+    padding-bottom: 10px;
+    margin-left:36.5px;
+    margin-right: 31px
+    }
+    &:not(:last-of-type) {
+        border-bottom: ${(props) => `1px solid ${props.theme.colors['paleGrey']}`};
+    }
+    
+   
+`
+
+
+
+const SearchItem:React.FC<SearchItemType>=(props)=>{
 
     const [width, setWidth]=useState(false)
 
@@ -84,11 +106,12 @@ const SearchItem:React.FC<SearchItem>=(props)=>{
         setWidth(width=>!width)
     }
 
-    return  (<li>
-                <Pin/>
+    return  (<Li>
+
+                <Pin onclick={props.onPin}/>
                 <Content>
-                    <span>{props.label}</span>
-                    <SpanCategory>{props.category}</SpanCategory>
+                    <span>{props.name}</span>
+                    <SpanCategory>{props.category.categoryString}</SpanCategory>
                     {
                         props.filterName &&
                             <Brows onClick={scale} mt={width ? '10px':'0'}>
@@ -98,9 +121,9 @@ const SearchItem:React.FC<SearchItem>=(props)=>{
                                 </div>
                                 <Box flexWrap={'wrap'} display={width? 'flex':'none'}>
                                     {
-                                        props.filterItems?.map((filter)=>{
+                                        props.filterItems?.map((filter,key)=>{
                                             // @ts-ignore
-                                            return   <Option>{filter.text}</Option>
+                                            return   <Option key={key}>{filter.text}</Option>
                                         })
                                     }
 
@@ -108,10 +131,12 @@ const SearchItem:React.FC<SearchItem>=(props)=>{
                             </Brows>
                     }
                 </Content>
-                <Delete />
-            </li>)
+                <DeleteIcon  onClick={props.onDelete}/>
+            </Li>)
 }
 
 SearchItem.defaultProps={
     pinned:false
 }
+
+export default SearchItem

@@ -2,7 +2,7 @@ import React from 'react';
 import Box from "../utility/Box";
 import {marginTop} from "styled-system";
 import Container from "../utility/Container";
-
+import Image from 'next/image'
 
 class Card extends React.Component{
     render() {
@@ -99,8 +99,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -132,8 +132,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -165,8 +165,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -198,8 +198,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -233,8 +233,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -266,8 +266,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -299,8 +299,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -332,8 +332,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -367,8 +367,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -400,8 +400,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -433,8 +433,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
@@ -466,8 +466,8 @@ class Card extends React.Component{
                     <div className="card" style={contain}>
                         <div style={card}>
                             <div className="image" style={image}>
-                                <img src={'/agency_tag_2.png'} alt="" style={redIcon}/>
-                                <img src={'/hi.jpg'} alt="" style={img}/>
+                                <Image src={'/agency_tag_2.png'} alt="" style={redIcon}/>
+                                <Image src={'/hi.jpg'} alt="" style={img}/>
                                 <div style={label}>
                                     <svg xmlns="http://www.w3.org/2000/svg" style={icon} width="14" height="14" fill="currentColor"
                                          className="bi bi-geo-alt" viewBox="0 0 16 16">
