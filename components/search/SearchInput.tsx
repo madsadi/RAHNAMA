@@ -227,7 +227,7 @@ const SearchInput: React.FC<SearchProps> = (props) => {
     function autocomplete(e: React.ChangeEvent<HTMLInputElement>) {
         const str = e.target.value;
         setValue(str)
-        if (str.length > 3)
+        if (str.length > 2)
             lookingForSearchSuggest(str)
     }
 
@@ -269,7 +269,7 @@ const SearchInput: React.FC<SearchProps> = (props) => {
             </FormControl>
             <Drop onScroll={onScroll} className={'scroll-d-none'} px={'16px'} pt={items.length>0 && isToggle ?'35px':0} display={isToggle ? 'block':'none' }>
                 <List className="scroll-d-none" >
-                    {items.map((item, index)=><SearchItem onPin={pinSearchItem}  onDelete={()=>deleteItem(index)} {...item} key={index}  />)}
+                    {items.map((item, index)=><SearchItem onPin={pinSearchItem}  onDelete={()=>deleteItem(index)} item={item}  key={index}  />)}
                     <After shadow={!scrollEnd} />
                 </List>
 

@@ -108,12 +108,12 @@ const SearchItem:React.FC<SearchItemType>=(props)=>{
 
     return  (<Li>
 
-                <Pin onclick={props.onPin}/>
+                <Pin onclick={()=>props.onPin(props.item)}/>
                 <Content>
-                    <span>{props.name}</span>
-                    <SpanCategory>{props.category.categoryString}</SpanCategory>
+                    <span>{props.item?.name}</span>
+                    <SpanCategory>{props.item.category.categoryString}</SpanCategory>
                     {
-                        props.filterName &&
+                        props.item.filterName &&
                             <Brows onClick={scale} mt={width ? '10px':'0'}>
                                 <div style={{display: "flex",position: "relative"}}>
                                     فیلتر آپارتمان
@@ -121,7 +121,7 @@ const SearchItem:React.FC<SearchItemType>=(props)=>{
                                 </div>
                                 <Box flexWrap={'wrap'} display={width? 'flex':'none'}>
                                     {
-                                        props.filterItems?.map((filter,key)=>{
+                                        props.item.filterItems?.map((filter,key)=>{
                                             // @ts-ignore
                                             return   <Option key={key}>{filter.text}</Option>
                                         })
@@ -136,7 +136,7 @@ const SearchItem:React.FC<SearchItemType>=(props)=>{
 }
 
 SearchItem.defaultProps={
-    pinned:false
+
 }
 
 export default SearchItem

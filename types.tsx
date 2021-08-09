@@ -7,14 +7,15 @@ export type Post={
 }
 
 export type SearchItemType={
-    name:string,
-    category: { categoryString:string, categoryId:number },
-    filterName ?:string,
-    filterItems?:[object],
-    pinned:boolean,
+    item:{
+        name:string,
+        category: { categoryString:string, categoryId:number },
+        filterName ?:string,
+        filterItems?:[object],
+        }
     onDelete ?: Function,
     onSelect ?: Function,
-    onPin ?: Function,
+    onPin : Function,
 
 }
 export type PinnedSearch={
