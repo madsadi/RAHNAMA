@@ -11,12 +11,14 @@ import {useRouter} from "next/router";
 import Container from "../components/utility/Container";
 import Col from "../components/utility/Card";
 import {Post} from "../types";
+
 interface Props {
     posts:[object],
     perPage:number,
     page:number,
     count:number
 }
+
 
 const Home: React.FC<Props> = (props) => {
     const {posts,page,count,perPage}=props;
@@ -59,8 +61,8 @@ const Home: React.FC<Props> = (props) => {
                             {data?.pages.map(page=>{
                                 return page.data.map((post:Post,index:number)=>{
                                     return (
-                                        <Col key={index}>
-
+                                        <Col  key={index}>
+                                            <Card/>
                                         </Col>
                                     )
                                 })

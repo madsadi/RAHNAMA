@@ -32,11 +32,7 @@ a {
 .icon{
   object-fit: contain;
 }
-.row{
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
+
 .col{
   flex-basis: 0;
 }
