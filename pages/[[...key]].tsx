@@ -60,7 +60,7 @@ const Home: React.FC<Props> = (props) => {
                                 return page.data.map((post:Post,index:number)=>{
                                     return (
                                         <Col key={index}>
-                                            {post.name}
+
                                         </Col>
                                     )
                                 })
