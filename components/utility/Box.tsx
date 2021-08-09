@@ -8,7 +8,7 @@ import {
     SpaceProps,
 } from 'styled-system'
 
-let Box = styled("div").attrs(props=>({className:props.className}))<FlexboxProps|LayoutProps|SpaceProps>`
+let Box = styled("div").attrs(props=>({...props,className:props.className}))<FlexboxProps|LayoutProps|SpaceProps>`
 ${space}
 ${layout}
 ${flexbox}

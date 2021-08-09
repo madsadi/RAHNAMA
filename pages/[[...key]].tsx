@@ -39,12 +39,10 @@ const Home: React.FC<Props> = (props) => {
         ...result
     } = useInfiniteQuery(['posts',router.basePath], fetchPage, {
         getNextPageParam: (lastPage, allPages) => {
-            console.log(lastPage, allPages,'next page params')
           return lastPage
         },
         initialData: {pageParams:[posts, page, count,perPage],pages:[]}
     })
-    console.log(data)
 
     return(
             <Box display={'flex'} flexDirection={'column'}>
@@ -56,7 +54,7 @@ const Home: React.FC<Props> = (props) => {
                     hasMore={hasNextPage ?? false}
                     loader={'loading...'}
                 >
-                    <Container>
+                    <Container height={1080}>
                         <div className="row">
                             {data?.pages.map(page=>{
                                 return page.data.map((post:Post,index:number)=>{

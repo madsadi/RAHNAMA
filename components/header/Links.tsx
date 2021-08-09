@@ -57,7 +57,7 @@ interface Props{
 
 }
 export const Links: React.FC<Props> = (props)=>{
-    return <Box flex={'3 1'} alignItems={'center'} display={'flex'}  justifyContent={'flex-start'} color={'white'} >
+    return <Box flex={['3 1','3 1','3 1','1 1']} alignItems={'center'} display={'flex'}  justifyContent={'flex-start'} color={'white'} >
                <Button mr={20} flex={"0 1 160px"} display={'flex'} justifyContent={'space-around'} border={'none'} borderRadius={20}  color={'white'}>
                    <ButtonTextLink flex={'1 1 80px'}>
                          {t("wizard.register")}

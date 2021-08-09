@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import search from './search'
+import showOnHeader from './showSearchOnHeader'
 import _ from 'lodash';
 
 
@@ -30,6 +31,7 @@ const store= configureStore({
     preloadedState: persistedState,
     reducer: {
         search,
+        showOnHeader,
     },
     devTools: process.env.NODE_ENV==='development'
 })

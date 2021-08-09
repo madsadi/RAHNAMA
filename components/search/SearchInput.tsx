@@ -25,7 +25,7 @@ import { PinnedSearch } from "../../types";
 
 const Form = styled.form`
     position: relative;
-    margin: auto;
+    margin: 0 auto;
     display: flex;
     flex: 1 1 100%;
     max-width:800px;
@@ -38,12 +38,13 @@ const FormControl = styled.div({
     flexFlow: 'row wrap',
     width: '100%',
     direction: 'rtl',
-    height: '50px',
+    height: '100%',
     background: 'white',
     borderRadius: '19px',
-    zIndex: 2,
+    zIndex: 1010,
     backgroundColor: (props: { theme: any }) => props.theme.colors.paleGrey,
     overflow: "hidden"
+
 })
 
 
@@ -78,14 +79,15 @@ const Button = styled.div<ColorProps>`
 `;
 
 const SearchIcon = styled(Search)`
-    width:20px;
-    height:20px;
+    max-width:100%;
+    max-height:100%;
+    margin: 5px auto;
 `
 
 const Drop = styled.div<DisplayProps | SpaceProps>`
             {
                 position: absolute;
-                top: 49px;
+                top: 95%;
                 width: 95%;
                 max-height: 469px;
                 background-color: white;
@@ -96,7 +98,7 @@ const Drop = styled.div<DisplayProps | SpaceProps>`
                 border-bottom-right-radius: 15px;
                 border-bottom-left-radius: 15px;
                 box-shadow: inset 0 20px 20px -20px rgba(0,0,0,0.34), 6px 7px 9px #1323372b ;
-                z-index: 1;
+                z-index: ${props=>props.theme.zIndices.dropdown};
                 overflow-y: scroll;
             }
             ${display}         
@@ -112,25 +114,27 @@ const List = styled('ul')({
 const CubeBox = styled.div<LayoutProps>`
      {
          position: relative;
-         right: 13%;
+         right: 90px;
+         top:0;
          z-index: 2;
          text-align: right !important;
          direction: rtl;
          animation: spincube ease-in-out 4 4s;
-         -webkit-animation: spincube ease-in-out 1 4s;
-         -moz-animation: spincube ease-in-out 1 4s;
-         -ms-animation: spincube ease-in-out 1 4s;
+         -webkit-animation: spincube ease-in-out infinite 4s;
+         -moz-animation: spincube ease-in-out infinite 4s;
+         -ms-animation: spincube ease-in-out infinite 4s;
          transform-style: preserve-3d;
-         transform-origin:25px 25px 0;
+         transform-origin:25px 50% 0;
          }
      & div{
         position:absolute;
         width: auto;
         color:${props => props.theme.colors.lipstick};
-        height:50px;
+        height:100%;
         outline: none;
         border: none;
-        line-height:50px;
+        display:flex;
+        align-items:center;
         text-decoration:none;
         text-shadow: none;
      }
@@ -163,7 +167,6 @@ const CubeBox = styled.div<LayoutProps>`
 
 // @ts-ignore
 const After = styled.div<HTMLElement | { shadow: boolean }>(props => {
-    console.log(props)
     return {
         position: 'sticky',
         bottom: '-3px',
@@ -216,7 +219,6 @@ const SearchInput: React.FC<SearchProps> = (props) => {
             }
         }).then(res => {
             const {data} = res;
-            console.log(res)
             setItems(data);
             setToggle(true)
         })
@@ -238,7 +240,6 @@ const SearchInput: React.FC<SearchProps> = (props) => {
 
     function _onScroll(event: UIEvent<HTMLDivElement>) {
         const target = event.target as HTMLDivElement;
-        console.log(target.scrollHeight, target.scrollTop)
         if (target.scrollHeight - target.scrollTop === target.clientHeight) {
             setScrollEnd(true)
         } else {
@@ -257,7 +258,7 @@ const SearchInput: React.FC<SearchProps> = (props) => {
         <Form>
             <FormControl>
                 {value.length===0 &&
-                <CubeBox display={timeExceed ? 'none':'block'}>
+                <CubeBox >
                     {props.values.map((str, index) => {
                         return <div key={index} className={`face-${index + 1 % 4}`}>{str}</div>
                     })}

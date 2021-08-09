@@ -4,7 +4,7 @@ import parser, {IResult} from "ua-parser-js";
 
 export const baseUrl = 'https://rahnama.com/';
 export const imageUrl = 'https://rahnama.com/uploads/';
-export const apiUrl = 'http://192.168.90.56:8089/rahnamagql';
+export const apiUrl = 'https://delta.rahnama.com/rahnamagql';
 
 
 
@@ -175,7 +175,6 @@ const queryBuilder = (page:string, data:object|null, res:object|null, option?: R
 export const query = async (page: string, data: object | null, res: object | null = null, option?: RequestOptions): Promise<any> => {
     const { graphql, headers } = queryBuilder(page, data, res, option);
     try {
-        console.log('mahi',graphql,headers)
         const res = axiosBase.post('', { query: `{${graphql}}` }, { headers });
         const { data } = await res;
 

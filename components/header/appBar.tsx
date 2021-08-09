@@ -9,22 +9,27 @@ import {
     flexbox,
     FlexboxProps,
     layout,
-    LayoutProps,
+    LayoutProps, margin, marginLeft, position, PositionProps,
     space,
     SpaceProps,
     typography,
-    TypographyProps
+    TypographyProps, ZIndexProps
 } from "styled-system";
 import Container from "../utility/Container";
 import Box from "../utility/Box";
 import Image from 'next/image'
+import {useSelector} from "react-redux";
+import SearchInput from "../search/SearchInput";
+import {ImageProps} from "next/dist/client/image";
+import theme from "../../utils/theme";
 
 interface Props{
 
 }
 
-const Bar=styled(Box)<ColorProps>`
+const Bar=styled(Box)<ColorProps|PositionProps|ZIndexProps>`
 ${color}
+${position}
 `
 
 const FlexBox=styled.div<FlexboxProps| LayoutProps>`
@@ -41,8 +46,19 @@ const NavBarBox=styled(Box)<BorderProps>`
     ${border}
 `
 
+const Logo=styled('span')`
+    margin-left:17px;
+    display:flex;
+    flex:0 0 33px;
+    align-items:center
+`
+
 export const AppBar: React.FC<Props> = (props)=>{
+
+    const showOnHeader=useSelector((state:any)=> state.showOnHeader)
+
     // @ts-ignore
+
     return(
         <Bar
               display={'flex'}
@@ -50,6 +66,10 @@ export const AppBar: React.FC<Props> = (props)=>{
               bg={'lipstick'}
               color={'white'}
               height={'90px'}
+              position={'sticky'}
+             // @ts-ignore
+              zIndex={'sticky'}
+              top={0}
           >
                 <Container>
                     <NavBarBox
@@ -57,13 +77,16 @@ export const AppBar: React.FC<Props> = (props)=>{
                         pt={"24px"}
                         pb={'13px'}
                         justifyContent={"space-between"}
-                        borderBottom={'1px solid white'}
+                        borderBottom={showOnHeader ? 'none':'1px solid white'}
                     >
                         <Links/>
                         
-                        <FlexBox flex={'0 1 245px'}  color={"white"} display={'flex'} alignItems={'center'} justifyContent={'flex-end'}>
-                            <Typo  fontSize={20} fontWeight={300} mr={10}>{t('text-logo')}</Typo>
-                            <Image width={30} height={30} src="/logo.svg" alt="niazmandiha"/>
+                        <FlexBox flex={'1 1 245px'}   color={"white"} display={'flex'} alignItems={'center'} justifyContent={'flex-end'}>
+                            {showOnHeader ? <SearchInput values={['استخدام','آپارتمان', 'خودروسواری']}/> : <Typo fontSize={20} fontWeight={300} mr={10}>{t('text-logo')}</Typo> }
+                            <Logo>
+                                <Image  width={33} height={33} src="/logo.svg" alt="niazmandiha"/>
+                            </Logo>
+
                         </FlexBox>
                     </NavBarBox>
                 </Container>

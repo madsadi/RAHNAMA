@@ -9,7 +9,7 @@ const theme= {
     },
 
     breakpoints:['1200px','1440px','1800px'],
-    zIndex:{
+    zIndices:{
         dropdown:           1000 ,
         sticky:             1020 ,
         fixed:              1030 ,
