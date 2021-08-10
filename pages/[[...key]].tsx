@@ -12,6 +12,9 @@ import Container from "../components/utility/Container";
 import Col from "../components/utility/Col";
 import {Post} from "../types";
 import Row from "../components/utility/Row";
+import SideBar from "../components/sidebar/SideBar";
+import styled from "styled-components";
+import {position, PositionProps} from "styled-system";
 
 interface Props {
     posts:[object],
@@ -20,6 +23,7 @@ interface Props {
     count:number
 }
 
+const BoxLayout=styled(Box)<PositionProps>(position)
 
 const Home: React.FC<Props> = (props) => {
     const {posts,page,count,perPage}=props;
@@ -48,15 +52,17 @@ const Home: React.FC<Props> = (props) => {
     })
 
     return(
-            <Box display={'flex'} flexDirection={'column'}>
+            <BoxLayout position={'static'}  display={'flex'} flexDirection={'column'}>
                 <AppBar/>
                 <TopSearch/>
+                <SideBar/>
                 <InfiniteScroll
                     next={fetchNextPage}
                     dataLength={count}
                     hasMore={hasNextPage ?? false}
                     loader={'loading...'}
                 >
+
                     <Container mt={30}>
                         <Row justifyContent={'space-between'}>
                             {data?.pages.map(page=>{
@@ -74,7 +80,7 @@ const Home: React.FC<Props> = (props) => {
 
                 </InfiniteScroll>
 
-            </Box>
+            </BoxLayout>
     )
 }
 
