@@ -1,4 +1,4 @@
-import React, {ChangeEvent, ChangeEventHandler, useCallback, useEffect, useState} from "react";
+import React, {ChangeEvent, ChangeEventHandler, useCallback, useEffect, useState, useRef} from "react";
 import styled from "styled-components";
 import {
     color,
@@ -13,6 +13,7 @@ import {
     SpaceProps
 } from "styled-system";
 import Search from "../../public/icons/iconly_light_outline_search.svg";
+import Cross from "../../public/icons/group_1370.svg";
 import SearchItem from "./SearchItem";
 import _ from "lodash";
 import {query} from "../../utils/request";
@@ -187,6 +188,22 @@ const SearchInput: React.FC<SearchProps> = (props) => {
     const [timeExceed, setTimeExceed] = useState(false)
     const [scrollEnd, setScrollEnd] = useState(false)
 
+    const escape = useRef(null)
+    const escapeListener = useCallback((e: KeyboardEvent) => {
+        if (e.key === 'Escape') {
+            setToggle(false)
+        }
+    }, [])
+    const clickListener = useCallback(
+        (e: MouseEvent) => {
+            if (!(escape.current! as any).contains(e.target)) {
+                setToggle?.(false) // using optional chaining here, change to onClose && onClose(), if required
+            }
+        },
+        [escape.current],
+    )
+
+
     const dispatch = useDispatch()
 
     function drop() {
@@ -203,9 +220,17 @@ const SearchInput: React.FC<SearchProps> = (props) => {
         return () => {
             clearInterval(timer);
         }
+
+        document.addEventListener('click', clickListener)
+        document.addEventListener('keyup', escapeListener)
+        return () => {
+            document.removeEventListener('click', clickListener)
+            document.removeEventListener('keyup', escapeListener)
+        }
     }, [])
 
-    function empty() {
+
+        function empty() {
         setValue('')
     }
 
@@ -255,6 +280,14 @@ const SearchInput: React.FC<SearchProps> = (props) => {
         dispatch(pinSearch(item))
     }
 
+    const cross = {
+        position: "absolute",
+        top: "50%",
+        transform: "translate(0,-50%)",
+        left: "17%",
+        cursor: "pointer"
+    }
+
     return  (
         <Form>
             <FormControl>
@@ -265,11 +298,12 @@ const SearchInput: React.FC<SearchProps> = (props) => {
                     })}
                 </CubeBox>}
                 <Input value={value} onClick={drop} onChange={autocomplete} boxShadow={{shadow}} type="text" placeholder="جستجو"/>
+                <Cross style={cross}></Cross>
                 <Button bg={'lipstick'}>
                     <SearchIcon />
                 </Button>
             </FormControl>
-            <Drop onScroll={onScroll} className={'scroll-d-none'} px={'16px'} pt={items.length>0 && isToggle ?'35px':0} display={isToggle ? 'block':'none' }>
+            <Drop ref={escape} onScroll={onScroll} className={'scroll-d-none'} px={'16px'} pt={items.length>0 && isToggle ?'35px':0} display={isToggle ? 'block':'none' }>
                 <List className="scroll-d-none" >
                     {items.map((item, index)=><SearchItem onPin={pinSearchItem}  onDelete={()=>deleteItem(index)} item={item}  key={index}  />)}
                     <After shadow={!scrollEnd} />
