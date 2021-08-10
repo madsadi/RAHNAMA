@@ -1,6 +1,6 @@
 import * as React from "react";
 import {AppBar} from "../components/header/appBar";
-import Card from "../components/wizard/wizardbox";
+import CardBox from "../components/wizard/CardBox";
 import Box from "../components/utility/Box";
 import {TopSearch} from "../components/search/TopSearch";
 import { GetServerSideProps } from "next";
@@ -63,7 +63,7 @@ const Home: React.FC<Props> = (props) => {
                                 return page.data.map((post:Post,index:number)=>{
                                     return (
                                         <Col flexGrow={1} flexShrink={1} px={'8px'} pb={'8px'} flexBasis={['50%','33.3333%','25%','25%']} key={index}>
-                                            <Card/>
+                                            <CardBox/>
                                         </Col>
                                     )
                                 })
