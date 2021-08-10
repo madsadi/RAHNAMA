@@ -217,16 +217,16 @@ const SearchInput: React.FC<SearchProps> = (props) => {
             setTimeExceed(true)
         }, 4000);
 
-        return () => {
-            clearInterval(timer);
-        }
-
         document.addEventListener('click', clickListener)
         document.addEventListener('keyup', escapeListener)
+
         return () => {
+            clearInterval(timer);
             document.removeEventListener('click', clickListener)
             document.removeEventListener('keyup', escapeListener)
         }
+
+
     }, [])
 
 
@@ -289,7 +289,7 @@ const SearchInput: React.FC<SearchProps> = (props) => {
     }
 
     return  (
-        <Form>
+        <Form ref={escape}>
             <FormControl>
                 {value.length===0 &&
                 <CubeBox >
@@ -303,7 +303,7 @@ const SearchInput: React.FC<SearchProps> = (props) => {
                     <SearchIcon />
                 </Button>
             </FormControl>
-            <Drop ref={escape} onScroll={onScroll} className={'scroll-d-none'} px={'16px'} pt={items.length>0 && isToggle ?'35px':0} display={isToggle ? 'block':'none' }>
+            <Drop  onScroll={onScroll} className={'scroll-d-none'} px={'16px'} pt={items.length>0 && isToggle ?'35px':0} display={isToggle ? 'block':'none' }>
                 <List className="scroll-d-none" >
                     {items.map((item, index)=><SearchItem onPin={pinSearchItem}  onDelete={()=>deleteItem(index)} item={item}  key={index}  />)}
                     <After shadow={!scrollEnd} />
