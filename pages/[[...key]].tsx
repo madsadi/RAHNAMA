@@ -60,10 +60,10 @@ const Home: React.FC<Props> = (props) => {
                     <Container mt={30}>
                         <Row justifyContent={'space-between'}>
                             {data?.pages.map(page=>{
-                                return page.data.map((post:Post,index:number)=>{
+                                return page?.data.map((post:Post,index:number)=>{
                                     return (
                                         <Col flexGrow={1} flexShrink={1} px={'8px'} pb={'8px'} flexBasis={['50%','33.3333%','25%','25%']} key={index}>
-                                            <CardBox/>
+                                            <CardBox post={post}/>
                                         </Col>
                                     )
                                 })

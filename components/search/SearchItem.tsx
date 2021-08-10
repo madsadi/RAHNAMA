@@ -81,7 +81,6 @@ const Li=styled.li`
     {  
     display: flex;
     position: relative;
-    font-family: Dana-Medium;
     color: #474546;
     font-size: 16px;
     margin-bottom: 12px;
