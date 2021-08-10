@@ -63,6 +63,10 @@ const Input = styled.input<HTMLInputElement | ShadowProps>`
     
     &:focus {
          outline-style: none;
+    }&::-webkit-input-placeholder  {
+         position:relative;
+         z-index:0;
+         
     }
     ${shadow}
 `
@@ -126,6 +130,8 @@ const CubeBox = styled.div<LayoutProps>`
          -ms-animation: spincube ease-in-out infinite 4s;
          transform-style: preserve-3d;
          transform-origin:25px 50% 0;
+         z-index:3;
+      
          }
      & div{
         position:absolute;
@@ -138,6 +144,7 @@ const CubeBox = styled.div<LayoutProps>`
         align-items:center;
         text-decoration:none;
         text-shadow: none;
+       
      }
       & .face-1{
         -webkit-transform:translateZ(30px);

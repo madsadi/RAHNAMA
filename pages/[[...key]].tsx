@@ -9,8 +9,9 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import {QueryFunctionContext, useInfiniteQuery} from "react-query";
 import {useRouter} from "next/router";
 import Container from "../components/utility/Container";
-import Col from "../components/utility/Card";
+import Col from "../components/utility/Col";
 import {Post} from "../types";
+import Row from "../components/utility/Row";
 
 interface Props {
     posts:[object],
@@ -56,19 +57,19 @@ const Home: React.FC<Props> = (props) => {
                     hasMore={hasNextPage ?? false}
                     loader={'loading...'}
                 >
-                    <Container height={1080}>
-                        <div className="row">
+                    <Container mt={30}>
+                        <Row justifyContent={'space-between'}>
                             {data?.pages.map(page=>{
                                 return page.data.map((post:Post,index:number)=>{
                                     return (
-                                        <Col  key={index}>
+                                        <Col flexGrow={1} flexShrink={1} px={'8px'} pb={'8px'} flexBasis={['50%','33.3333%','25%','25%']} key={index}>
                                             <Card/>
                                         </Col>
                                     )
                                 })
                             })}
 
-                        </div>
+                        </Row>
                     </Container>
 
                 </InfiniteScroll>

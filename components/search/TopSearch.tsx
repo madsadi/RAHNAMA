@@ -73,7 +73,7 @@ export const TopSearch: React.FC<Props> = (props)=>{
                     <SearchInput values={['استخدام','آپارتمان', 'خودروسواری']}/>
                 </Box>
                 <Box maxWidth={'700px'} px={15} display={'flex'}  justifyContent={'flex-end'} width={'100%'} height={'50px'}>
-                    {['استخدام','آپارتمان', 'خودروسواری'].map(pill=> {
+                    {['استخدام','آپارتمان', 'خودروسواری','استخدام','آپارتمان', 'خودروسواری'].map(pill=> {
                         return <Pill>{pill}</Pill>
                     })}
                 </Box>
