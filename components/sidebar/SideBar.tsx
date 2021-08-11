@@ -1,5 +1,6 @@
 import React, {UIEvent, useCallback, useEffect, useRef, useState} from "react";
 import styled from "styled-components";
+import {DisplayProps, layout, position, SpaceProps} from "styled-system";
 import ModalCity from "./Modalcity";
 import Ipro from '../../public/icons/Group 1403.svg';
 import Categ from '../../public/icons/iconly_light_outline_category.svg';
@@ -51,7 +52,6 @@ import R from '../../public/icons/profile.svg';
 import Whiteremove from '../../public/icons/white remove.svg';
 import Blackremove from '../../public/icons/black remove.svg';
 import Dots from '../../public/icons/dots.svg';
-import {DisplayProps, layout, position, SpaceProps} from "styled-system";
 import _ from "lodash";
 
 const SideContent = styled.div`
@@ -431,8 +431,12 @@ function SideBar() {
     }
 
     const [display,setDisplay]=useState(true);
-    const [show,setShow]=useState(true);
+    const [show,setShow]=useState(false);
 
+    const onShow = () => {
+        if(!show) setShow(true);
+        else setShow(false);
+    }
 
     const sideRef=useRef<HTMLDivElement|null>(null)
 
@@ -460,259 +464,262 @@ function SideBar() {
 
     return (
         // @ts-ignore
-        <SideContent position={'fixed'}>
-            <PullDiv>
-                <CurvedTop></CurvedTop>
-                <Div onClick={()=>setDisplay(!display)}>
-                    <Pull style={pullbutton}/>
-                </Div>
-                <CurvedBottom></CurvedBottom>
-            </PullDiv>
-            <Side>
-                <Shown display={display ?'block':'none'} >
-                    <User>
-                        <Profile>
-                            <Ipro></Ipro>
-                            <Span>کاربر میهمان</Span>
-                        </Profile>
-                        <Login>
-                            ورود و ثبت نام
-                        </Login>
-                        <He style={he}/>
-                    </User>
-                    <Section>
-                        <Head>
-                            <Span>دسته بندی ها</Span>
-                            <Categ style={icon}></Categ>
-                        </Head>
-                        <Ul>
-                            <Li>
-                                <RealState style={icon1}/>
-                                <Span>املاک</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Transportation style={icon1}/>
-                                <Span>وسایل نقلیه</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Hire style={icon1}/>
-                                <Span>استخدام</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Stuff style={icon1}/>
-                                <Span>لوازم</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Furniture style={icon1}/>
-                                <Span>لوازم خانه</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Service style={icon1}/>
-                                <Span>خدمات</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Personalstuff style={icon1}/>
-                                <Span>لوازم شخصی</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Business style={icon1}/>
-                                <Span>کسب و کار،صنعت</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Industry style={icon1}/>
-                                <Span>کسب و کار،صنعت</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                            <Li>
-                                <Tourist style={icon1}/>
-                                <Span>گردشگری</Span>
-                                <ArrowLeft style={icon2}/>
-                            </Li>
-                        </Ul>
-                    </Section>
-                    <Section>
-                        <Head>
-                            <Span>فیلتر ها</Span>
-                            <Ficon style={icon}></Ficon>
-                        </Head>
-                        <CityPrice>
-                            <WithFilter>
-                                <Heading>
-                                    <Span>شهر ،محله<Yellow>( 2شهر و 20 محله )</Yellow></Span>
-                                    <Blackremove style={icon3}/>
-                                </Heading>
-                                <FiltersContain>
-                                    <Ones>
-                                        <CityFilter>
-                                            تهران انقلاب
-                                            <Whiteremove onClick={()=>setShow(!show)} style={icon33}></Whiteremove>
-                                        </CityFilter>
-                                        <CityFilter>
-                                            تهران انقلاب
-                                            <Whiteremove onClick={()=>setShow(!show)} style={icon33}></Whiteremove>
-                                        </CityFilter>
-                                        <CityFilter>
-                                            تهران انقلاب
-                                            <Whiteremove onClick={()=>setShow(!show)} style={icon33}></Whiteremove>
-                                        </CityFilter>
-                                        <CityFilter>
-                                            تهران انقلاب
-                                            <Whiteremove onClick={()=>setShow(!show)} style={icon33}></Whiteremove>
-                                        </CityFilter>
-                                    </Ones>
-                                    <Dots style={{marginTop: "auto",marginRight: "auto", cursor: "pointer"}}/>
-                                </FiltersContain>
-                            </WithFilter>
-                            <WithoutFilter>
-                                <Span>شهر ،محله</Span>
-                                <Plus onClick={()=>setShow(!show)} style={icon3}></Plus>
-                            </WithoutFilter>
-                        </CityPrice>
-                        <CityPrice>
-                            {/*<WithFilter>*/}
-                            {/*    <Heading>*/}
-                            {/*        <Span>قیمت</Span>*/}
-                            {/*        <Blackremove style={icon3}></Blackremove>*/}
-                            {/*    </Heading>*/}
-                            {/*    <FiltersContain>*/}
-                            {/*        <Yellow>از</Yellow>*/}
-                            {/*        <InputPrice type="text" placeholder="مثلا 70،000،000 تومان"></InputPrice>*/}
-                            {/*    </FiltersContain>*/}
-                            {/*</WithFilter>*/}
-                            <WithoutFilter>
-                                <Span>قیمت</Span>
-                                <Plus style={icon3}></Plus>
-                            </WithoutFilter>
-                        </CityPrice>
-                        <Feature>
-                            <Span style={{marginRight: "0"}}>عکس دار</Span>
-                            <CheckedOut style={icon}></CheckedOut>
-                        </Feature>
-                        <Feature>
-                            <Span style={{marginRight: "0"}}>فوری</Span>
-                            <Check style={icon}></Check>
-                        </Feature>
-                        <Feature>
-                            <Span style={{marginRight: "0"}}>روزنامه</Span>
-                            <Check style={icon}></Check>
-                        </Feature>
-                        <Feature>
-                            <Span style={{marginRight: "0"}}>گرافیکی</Span>
-                            <Check style={icon}></Check>
-                        </Feature>
-                    </Section>
-                    <Line></Line>
-                    <Ul style={{color: "white", marginRight: "20px"}}>
-                        <Lii>
-                            <Taarif style={iconicon}/>
-                            <Span>تعرفه ها</Span>
-                        </Lii>
-                        <Lii>
-                            <Rules style={iconicon}/>
-                            <Span>قوانین و مقررات</Span>
-                        </Lii>
-                        <Lii>
-                            <Branch style={iconicon}/>
-                            <Span>دفاتر همشهری</Span>
-                        </Lii>
-                        <Lii>
-                            <About style={iconicon}/>
-                            <Span>درباره همشهری</Span>
-                        </Lii>
-                        <Lii>
-                            <Customer style={iconicon}/>
-                            <Span>پشتیبانی</Span>
-                        </Lii>
-                    </Ul>
-                    <Footer>
-                        <Software>
+        <div>
+            <SideContent position={'fixed'}>
+                <PullDiv>
+                    <CurvedTop></CurvedTop>
+                    <Div onClick={()=>setDisplay(!display)}>
+                        <Pull style={pullbutton}/>
+                    </Div>
+                    <CurvedBottom></CurvedBottom>
+                </PullDiv>
+                <Side >
+                    <Shown display={display ?'block':'none'} >
+                        <User>
                             <Profile>
-                                <ISoftware style={icon1}/>
-                                <Span>دانلود اپلیکیشن</Span>
+                                <Ipro></Ipro>
+                                <Span>کاربر میهمان</Span>
                             </Profile>
-                            <Apps>
-                                <Android style={{cursor: "pointer"}} />
-                                <Ios style={{cursor: "pointer"}}/>
-                                <Bazar style={{cursor: "pointer"}}/>
-                            </Apps>
-                        </Software>
-                        <div>
-                            <Licence style={{cursor: "pointer"}}/>
-                        </div>
-                    </Footer>
-                </Shown>
-                <Hide display={!display ?'block':'none'} >
-                    <Pro>
-                        <R style={{marginBottom: "4px"}}/>
-                    </Pro>
-                    <Pro>
-                        <Ul>
-                            <Liii>
-                                <Q/>
-                            </Liii>
-                            <Liii>
-                                <A/>
-                            </Liii>
-                            <Liii>
-                                <B/>
-                            </Liii>
-                            <Liii>
-                                <C/>
-                            </Liii>
-                            <Liii>
-                                <D/>
-                            </Liii>
-                            <Liii>
-                                <E/>
-                            </Liii>
-                            <Liii>
-                                <L/>
-                            </Liii>
-                            <Liii>
-                                <K/>
-                            </Liii>
-                            <Liii>
-                                <I/>
-                            </Liii>
-                            <Liii>
-                                <P/>
-                            </Liii>
+                            <Login>
+                                ورود و ثبت نام
+                            </Login>
+                            <He style={he}/>
+                        </User>
+                        <Section>
+                            <Head>
+                                <Span>دسته بندی ها</Span>
+                                <Categ style={icon}></Categ>
+                            </Head>
+                            <Ul>
+                                <Li>
+                                    <RealState style={icon1}/>
+                                    <Span>املاک</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Transportation style={icon1}/>
+                                    <Span>وسایل نقلیه</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Hire style={icon1}/>
+                                    <Span>استخدام</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Stuff style={icon1}/>
+                                    <Span>لوازم</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Furniture style={icon1}/>
+                                    <Span>لوازم خانه</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Service style={icon1}/>
+                                    <Span>خدمات</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Personalstuff style={icon1}/>
+                                    <Span>لوازم شخصی</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Business style={icon1}/>
+                                    <Span>کسب و کار،صنعت</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Industry style={icon1}/>
+                                    <Span>کسب و کار،صنعت</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                                <Li>
+                                    <Tourist style={icon1}/>
+                                    <Span>گردشگری</Span>
+                                    <ArrowLeft style={icon2}/>
+                                </Li>
+                            </Ul>
+                        </Section>
+                        <Section>
+                            <Head>
+                                <Span>فیلتر ها</Span>
+                                <Ficon style={icon}></Ficon>
+                            </Head>
+                            <CityPrice>
+                                <WithFilter>
+                                    <Heading>
+                                        <Span>شهر ،محله<Yellow>( 2شهر و 20 محله )</Yellow></Span>
+                                        <Blackremove style={icon3}/>
+                                    </Heading>
+                                    <FiltersContain>
+                                        <Ones>
+                                            <CityFilter>
+                                                تهران انقلاب
+                                                <Whiteremove style={icon33}></Whiteremove>
+                                            </CityFilter>
+                                            <CityFilter>
+                                                تهران انقلاب
+                                                <Whiteremove style={icon33}></Whiteremove>
+                                            </CityFilter>
+                                            <CityFilter>
+                                                تهران انقلاب
+                                                <Whiteremove style={icon33}></Whiteremove>
+                                            </CityFilter>
+                                            <CityFilter>
+                                                تهران انقلاب
+                                                <Whiteremove style={icon33}></Whiteremove>
+                                            </CityFilter>
+                                        </Ones>
+                                        <Dots style={{marginTop: "auto",marginRight: "auto", cursor: "pointer"}}/>
+                                    </FiltersContain>
+                                </WithFilter>
+                                <WithoutFilter>
+                                    <Span>شهر ،محله</Span>
+                                    <Plus onClick={onShow} style={icon3}></Plus>
+                                </WithoutFilter>
+                            </CityPrice>
+                            <CityPrice>
+                                {/*<WithFilter>*/}
+                                {/*    <Heading>*/}
+                                {/*        <Span>قیمت</Span>*/}
+                                {/*        <Blackremove style={icon3}></Blackremove>*/}
+                                {/*    </Heading>*/}
+                                {/*    <FiltersContain>*/}
+                                {/*        <Yellow>از</Yellow>*/}
+                                {/*        <InputPrice type="text" placeholder="مثلا 70،000،000 تومان"></InputPrice>*/}
+                                {/*    </FiltersContain>*/}
+                                {/*</WithFilter>*/}
+                                <WithoutFilter>
+                                    <Span>قیمت</Span>
+                                    <Plus style={icon3}></Plus>
+                                </WithoutFilter>
+                            </CityPrice>
+                            <Feature>
+                                <Span style={{marginRight: "0"}}>عکس دار</Span>
+                                <CheckedOut style={icon}></CheckedOut>
+                            </Feature>
+                            <Feature>
+                                <Span style={{marginRight: "0"}}>فوری</Span>
+                                <Check style={icon}></Check>
+                            </Feature>
+                            <Feature>
+                                <Span style={{marginRight: "0"}}>روزنامه</Span>
+                                <Check style={icon}></Check>
+                            </Feature>
+                            <Feature>
+                                <Span style={{marginRight: "0"}}>گرافیکی</Span>
+                                <Check style={icon}></Check>
+                            </Feature>
+                        </Section>
+                        <Line></Line>
+                        <Ul style={{color: "white", marginRight: "20px"}}>
+                            <Lii>
+                                <Taarif style={iconicon}/>
+                                <Span>تعرفه ها</Span>
+                            </Lii>
+                            <Lii>
+                                <Rules style={iconicon}/>
+                                <Span>قوانین و مقررات</Span>
+                            </Lii>
+                            <Lii>
+                                <Branch style={iconicon}/>
+                                <Span>دفاتر همشهری</Span>
+                            </Lii>
+                            <Lii>
+                                <About style={iconicon}/>
+                                <Span>درباره همشهری</Span>
+                            </Lii>
+                            <Lii>
+                                <Customer style={iconicon}/>
+                                <Span>پشتیبانی</Span>
+                            </Lii>
                         </Ul>
-                    </Pro>
-                    <Pro>
-                        <J style={{marginBottom: "4px"}}/>
-                    </Pro>
-                    <Pro>
-                        <Ul>
-                            <Liii>
-                                <G/>
-                            </Liii>
-                            <Liii>
-                                <F/>
-                            </Liii>
-                            <Liii>
-                                <H/>
-                            </Liii>
-                            <Liii>
-                                <M/>
-                            </Liii>
-                            <Liii>
-                                <N/>
-                            </Liii>
-                        </Ul>
-                    </Pro>
-                    <O style={{marginBottom: "4px",cursor: "pointer"}}/>
-                </Hide>
-            </Side>
-        </SideContent >
+                        <Footer>
+                            <Software>
+                                <Profile>
+                                    <ISoftware style={icon1}/>
+                                    <Span>دانلود اپلیکیشن</Span>
+                                </Profile>
+                                <Apps>
+                                    <Android style={{cursor: "pointer"}} />
+                                    <Ios style={{cursor: "pointer"}}/>
+                                    <Bazar style={{cursor: "pointer"}}/>
+                                </Apps>
+                            </Software>
+                            <div>
+                                <Licence style={{cursor: "pointer"}}/>
+                            </div>
+                        </Footer>
+                    </Shown>
+                    <Hide display={!display ?'block':'none'} >
+                        <Pro>
+                            <R style={{marginBottom: "4px"}}/>
+                        </Pro>
+                        <Pro>
+                            <Ul>
+                                <Liii>
+                                    <Q/>
+                                </Liii>
+                                <Liii>
+                                    <A/>
+                                </Liii>
+                                <Liii>
+                                    <B/>
+                                </Liii>
+                                <Liii>
+                                    <C/>
+                                </Liii>
+                                <Liii>
+                                    <D/>
+                                </Liii>
+                                <Liii>
+                                    <E/>
+                                </Liii>
+                                <Liii>
+                                    <L/>
+                                </Liii>
+                                <Liii>
+                                    <K/>
+                                </Liii>
+                                <Liii>
+                                    <I/>
+                                </Liii>
+                                <Liii>
+                                    <P/>
+                                </Liii>
+                            </Ul>
+                        </Pro>
+                        <Pro>
+                            <J style={{marginBottom: "4px"}}/>
+                        </Pro>
+                        <Pro>
+                            <Ul>
+                                <Liii>
+                                    <G/>
+                                </Liii>
+                                <Liii>
+                                    <F/>
+                                </Liii>
+                                <Liii>
+                                    <H/>
+                                </Liii>
+                                <Liii>
+                                    <M/>
+                                </Liii>
+                                <Liii>
+                                    <N/>
+                                </Liii>
+                            </Ul>
+                        </Pro>
+                        <O style={{marginBottom: "4px",cursor: "pointer"}}/>
+                    </Hide>
+                </Side>
+            </SideContent >
+            {show ? <ModalCity/> : null }
+        </div>
     )
 }
 
