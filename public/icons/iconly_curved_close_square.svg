@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="Iconly_Curved_Close_Square" width="24" height="24" viewBox="0 0 24 24">
+    <defs>
+        <style>
+            .cls-1{fill:none;stroke:#acacac;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;stroke-width:1.5px}
+        </style>
+    </defs>
+    <g id="Close_Square" transform="translate(2 2)">
+        <path id="Stroke_1" d="M4.792 0L0 4.792" class="cls-1" transform="translate(7.602 7.595)"/>
+        <path id="Stroke_2" d="M4.8 4.8L0 0" class="cls-1" transform="translate(7.6 7.593)"/>
+        <path id="Stroke_3" d="M0 9.25c0 6.937 2.313 9.25 9.25 9.25s9.25-2.313 9.25-9.25S16.187 0 9.25 0 0 2.313 0 9.25z" class="cls-1" transform="translate(0.75 0.75)"/>
+    </g>
+</svg>

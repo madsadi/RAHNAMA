@@ -10,10 +10,16 @@ import {
     SpaceProps,
     typography,
     TypographyProps,
-    FlexboxProps, FlexProps, ColorProps, LayoutProps, BorderProps
+    FlexboxProps, ColorProps, LayoutProps, BorderProps
 } from 'styled-system'
 import {t} from '../../locales'
-import Box from "../utility/Box";
+import Image from 'next/image'
+
+const Box=styled.div<FlexboxProps | LayoutProps|ColorProps>`
+    ${flexbox}
+    ${layout}
+    ${color}
+`
 
 const Button=styled("button")<any>({
     backdropFilter: 'blur',
@@ -51,18 +57,18 @@ interface Props{
 
 }
 export const Links: React.FC<Props> = (props)=>{
-    return <Box flex={'3 1'} alignItems={'center'} display={'flex'}  justifyContent={'flex-start'} color={'white'} >
+    return <Box flex={['3 1','3 1','3 1','1 1']} alignItems={'center'} display={'flex'}  justifyContent={'flex-start'} color={'white'} >
                <Button mr={20} flex={"0 1 160px"} display={'flex'} justifyContent={'space-around'} border={'none'} borderRadius={20}  color={'white'}>
                    <ButtonTextLink flex={'1 1 80px'}>
                          {t("wizard.register")}
                    </ButtonTextLink>
-                   <img src={'/icons/Iconly-curved-plus.svg'} width={30} height={30}  className={'icon'} alt=""/>
+                   <Image src={'/icons/Iconly-curved-plus.svg'} width={30} height={30}  className={'icon'} alt=""/>
                </Button>
                 <TextLink display={'flex'}  alignItems={'center'} textAlign={[ 'center', 'center', 'center', 'left' ]} mr={'30px'}>
                     <ButtonTextLink flex={'1 1 80px'}>
                         {t("menu.profile")}
                     </ButtonTextLink>
-                    <img src={'/icons/Iconly_Curved_Profile.svg'} width={24} height={24}  className={'icon'} alt=""/>
+                    <Image src={'/icons/Iconly_Curved_Profile.svg'} width={24} height={24}  className={'icon'} alt=""/>
                 </TextLink>
                 <TextLink textAlign={[ 'center', 'center', 'center', 'left' ]} mr={'30px'}>
                     {t('menu.magazine')}
