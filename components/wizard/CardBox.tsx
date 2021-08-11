@@ -26,6 +26,19 @@ const ImageData = styled.div `
     border-radius: 15px;
     margin: auto;
     object-fit:contain;
+    &:after{
+        content:'';
+        width:127px;
+        height:127px;
+        z-index:1000;
+        background: linear-gradient(to bottom, rgba(71, 69, 70, 0) 8%, #474546 74%);
+
+    }
+    & img{
+     object-fit: content;
+    height: 100%;
+    border-radius: 15px;
+    }
 `;
 
 const BadgeIcon = styled.img<any>`
@@ -35,11 +48,6 @@ const BadgeIcon = styled.img<any>`
     width: 20%;
 `;
 
-const Img = styled("div")<any>`
-    object-fit: content;
-    height: 100%;
-    border-radius: 15px;
-`;
 
 const Label = styled.div `
     position: absolute;
@@ -87,16 +95,17 @@ function CardBox(props:{post:Post}){
         return false
     }))
 
-    let badge=props.post.badges?.includes('realState') ? '/agency_tag.svg'
-    : props.post.badges?.includes('carDealership') ? '/car_tag.svg'
-     : props.post.badges?.includes('newspaper') ? '/newspaper_tag.svg':null;
+    let badge=props.post.badges?.includes('realState') ? '/icons/agency_tag.svg'
+    : props.post.badges?.includes('carDealership') ? '/icons/car_tag.svg'
+     : props.post.badges?.includes('newspaper') ? '/icons/newspaper_tag.svg':null;
+    console.log(props.post.badges)
 
     return (
 
             <Card>
-                <ImageData>
+                <ImageData className={'dard'}>
                     {badge && <BadgeIcon src={badge} alt=""/>}
-                    <Image width={'127px'} height={'127px'} src={props.post.pictures.thumbnail.thumbnail} alt=""/>
+                    <Image width={'127px'} height={'127px'} src={props.post.pictures?.thumbnail ?props.post.pictures?.thumbnail.thumbnail :'/null.svg'} alt=""/>
                     <Label>
                         <Location style={icon}/>
                         <Where>{props.post.location.cityString}</Where>
