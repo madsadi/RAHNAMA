@@ -13,13 +13,19 @@ export const loadAdvertises=async function (data?:any,options?:RequestOptions){
             location:{
                 cityString:true
             },
+            badges:true,
             filters:{
                 label:true,
                 options:{
                     value:true
                 }
             },
-            releasedAt:true
+            releasedAt:true,
+            pictures:{
+                thumbnail:{
+                    thumbnail:true
+                }
+            }
         }
 
     }, options)

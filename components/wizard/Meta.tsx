@@ -6,6 +6,7 @@ const FilterBox = styled.div`
     display: flex;
     flex-direction: row;
 `;
+
 const FilterRow=(props: {label:string, value:any, unit:string} )=>{
     return (
         <div>

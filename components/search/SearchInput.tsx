@@ -65,6 +65,16 @@ const Input = styled.input<HTMLInputElement | ShadowProps>`
     &:focus {
          outline-style: none;
     }
+    
+    &::-webkit-search-cancel-button {
+        content: '';
+        cursor:pointer;
+        background-image: url('/icons/group_1370.svg');
+        background-size: contain;
+        width:15px;
+        height:15px;
+        -webkit-appearance: none;
+    }
     ${shadow}
 `
 
@@ -298,10 +308,7 @@ const SearchInput: React.FC<SearchProps> = (props) => {
                         return <div key={index} className={`face-${index + 1 % 4}`}>{str}</div>
                     })}
                 </CubeBox>}
-                <Input value={value} onClick={drop} onChange={autocomplete} boxShadow={{shadow}} type="text" placeholder="جستجو"/>
-                <Remove type="reset" >
-                    <Cross display={isToggle ? 'block':'none' }/>
-                </Remove>
+                <Input value={value} onClick={drop} onChange={autocomplete} boxShadow={{shadow}} type="search" placeholder="جستجو"/>
                 <Button bg={'lipstick'}>
                     <SearchIcon />
                 </Button>
@@ -311,7 +318,6 @@ const SearchInput: React.FC<SearchProps> = (props) => {
                     {items.map((item, index)=><SearchItem onPin={pinSearchItem}  onDelete={()=>deleteItem(index)} item={item}  key={index}  />)}
                     <After shadow={!scrollEnd} />
                 </List>
-
             </Drop>
         </Form>
     )
