@@ -1,9 +1,24 @@
-
+export type Filter={
+    label:string,
+    options:{value:string}[],
+    is_visibleoncard:boolean,
+}
 
 export type Post={
     name:string,
+    badges:string[] | null,
     category:object,
-    releasedAt:string
+    releasedAt:string,
+    filters:Filter[],
+    location:{
+        cityString:string
+    },
+    pictures:{
+        thumbnail :{
+            thumbnail:string
+        }
+    }
+
 }
 
 export type SearchItemType={

@@ -10,6 +10,15 @@ export const loadAdvertises=async function (data?:any,options?:RequestOptions){
                 categoryString:true,
                 categoryId:true
             },
+            location:{
+                cityString:true
+            },
+            filters:{
+                label:true,
+                options:{
+                    value:true
+                }
+            },
             releasedAt:true
         }
 

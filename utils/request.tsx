@@ -4,7 +4,7 @@ import parser, {IResult} from "ua-parser-js";
 
 export const baseUrl = 'https://rahnama.com/';
 export const imageUrl = 'https://rahnama.com/uploads/';
-export const apiUrl = 'https://delta.rahnama.com/rahnamagql';
+export const apiUrl = 'http://192.168.90.56:8089/rahnamagql';
 
 
 
