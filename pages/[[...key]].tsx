@@ -12,9 +12,10 @@ import Container from "../components/utility/Container";
 import Col from "../components/utility/Col";
 import {Post} from "../types";
 import Row from "../components/utility/Row";
-import SideBar from "../components/sidebar/SideBar";
+
 import styled from "styled-components";
 import {position, PositionProps} from "styled-system";
+import SideBar from "../components/sidebar/SideBar";
 
 interface Props {
     posts:[object],

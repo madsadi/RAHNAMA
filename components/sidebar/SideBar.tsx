@@ -56,12 +56,11 @@ import _ from "lodash";
 
 const SideContent = styled.div`
     right: 0;
-    margin-left:auto;
+    max-width:500px;
     z-index: 1015; 
     margin-bottom:30px;
     display:flex;
     top:114px;
-    height:895px;
     ${position}
 `
 
@@ -292,9 +291,8 @@ const Div = styled.div`
     `;
 
 const Pro = styled.div `
-position: relative;
-cursor: pointer;
-
+    position: relative;
+    cursor: pointer;
     &::after {
         content: "";
         display: block;
@@ -321,6 +319,7 @@ const Shown = styled.div<DisplayProps | SpaceProps>`
     width: 390px;
     overflow-y: scroll;
     padding-right: 10px;
+    height:895px;
     ${layout}
 `
 
@@ -426,18 +425,13 @@ function SideBar() {
 
     const [display,setDisplay]=useState(true);
     const [show,setShow]=useState(true);
-    const [positionSticky,setPositionSticky]=useState(false);
 
 
     const sideRef=useRef<HTMLDivElement|null>(null)
 
     function _onScroll() {
         console.log(sideRef.current?.offsetTop , window)
-        if (sideRef?.current?.offsetTop+sideRef.current?.clientHeight < window.scrollY) {
-            setPositionSticky(true)
-        } else {
-            setPositionSticky(false)
-        }
+        setDisplay(false);
 
     }
 
@@ -459,7 +453,7 @@ function SideBar() {
 
     return (
         // @ts-ignore
-        <SideContent position={positionSticky? 'fixed':'absolute'} bottom={positionSticky? '5px':'auto'} ref={sideRef}>
+        <SideContent position={'fixed'}>
             <PullDiv>
                 <CurvedTop></CurvedTop>
                 <Div onClick={()=>setDisplay(!display)}>
