@@ -184,6 +184,8 @@ const Liii = styled.li`
 const Ul = styled.ul`
     list-style-type: none;
         direction:rtl;
+        padding-right:0;
+        margin: 0;
 `
 
 const CityPrice = styled.div`
@@ -216,11 +218,14 @@ const FiltersContain = styled.div`
     display: flex;
 `
 
-const InputPrice = styled.input`
-    background: transparent;
-    border-bottom: 1px solid rgba(255,255,255,0.5);
-    margin-right:10px;
-`
+// const InputPrice = styled.input`
+//     background: transparent;
+//     border-bottom: 1px solid rgba(255,255,255,0.5) !important;
+//     margin-right:10px;
+//     border: none;
+//     width:120px;
+// `
+
 const Ones = styled.div`
     display: flex;
     flex-flow:wrap;
@@ -320,6 +325,7 @@ const Shown = styled.div<DisplayProps | SpaceProps>`
     overflow-y: scroll;
     padding-right: 10px;
     height:895px;
+    padding-bottom: 100px;
     ${layout}
 `
 
@@ -387,7 +393,8 @@ function SideBar() {
 
     const icon3 = {
         marginRight: "auto",
-        marginTop: "3px"
+        marginTop: "3px",
+        cursor: "pointer"
     }
 
     const icon33 = {
@@ -561,7 +568,7 @@ function SideBar() {
                                             <Whiteremove onClick={()=>setShow(!show)} style={icon33}></Whiteremove>
                                         </CityFilter>
                                     </Ones>
-                                    <Dots style={{marginTop: "auto",marginRight: "auto"}}/>
+                                    <Dots style={{marginTop: "auto",marginRight: "auto", cursor: "pointer"}}/>
                                 </FiltersContain>
                             </WithFilter>
                             <WithoutFilter>
@@ -570,16 +577,16 @@ function SideBar() {
                             </WithoutFilter>
                         </CityPrice>
                         <CityPrice>
-                            <WithFilter>
-                                <Heading>
-                                    <Span>قیمت</Span>
-                                    <Blackremove style={icon3}></Blackremove>
-                                </Heading>
-                                <FiltersContain>
-                                    <Yellow>از</Yellow>
-                                    <InputPrice type="text" placeholder="مثلا 70،000،000 تومان"></InputPrice>
-                                </FiltersContain>
-                            </WithFilter>
+                            {/*<WithFilter>*/}
+                            {/*    <Heading>*/}
+                            {/*        <Span>قیمت</Span>*/}
+                            {/*        <Blackremove style={icon3}></Blackremove>*/}
+                            {/*    </Heading>*/}
+                            {/*    <FiltersContain>*/}
+                            {/*        <Yellow>از</Yellow>*/}
+                            {/*        <InputPrice type="text" placeholder="مثلا 70،000،000 تومان"></InputPrice>*/}
+                            {/*    </FiltersContain>*/}
+                            {/*</WithFilter>*/}
                             <WithoutFilter>
                                 <Span>قیمت</Span>
                                 <Plus style={icon3}></Plus>
