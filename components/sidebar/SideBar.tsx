@@ -433,11 +433,7 @@ function SideBar() {
     const [display,setDisplay]=useState(true);
     const [show,setShow]=useState(true);
 
-
-    const sideRef=useRef<HTMLDivElement|null>(null)
-
     function _onScroll() {
-        console.log(sideRef.current?.offsetTop , window)
         setDisplay(false);
 
     }

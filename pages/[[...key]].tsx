@@ -29,9 +29,14 @@ const BoxLayout=styled(Box)<PositionProps>(position)
 const Home: React.FC<Props> = (props) => {
     const {posts,page,count,perPage}=props;
     const router=useRouter();
+
+
     async function fetchPage(context: QueryFunctionContext) {
+        console.log(context.pageParam,'page params')
         let p=context.pageParam ?context.pageParam.page+1 : page+1
-        return loadAdvertises({page:p})
+        const res=await loadAdvertises({page:p})
+        console.log('res',res)
+        return res;
     }
 
 
@@ -47,11 +52,24 @@ const Home: React.FC<Props> = (props) => {
         ...result
     } = useInfiniteQuery(['posts',router.basePath], fetchPage, {
         getNextPageParam: (lastPage, allPages) => {
-          return lastPage
+            console.log(lastPage,'last page')
+            if (lastPage){
+                const {count, page, perPage}=lastPage;
+
+                if (count-(page*perPage)>0){
+
+                    return lastPage
+                }
+            }
+            console.log('undefined')
+
+          return undefined
         },
+
         initialData: {pageParams:[posts, page, count,perPage],pages:[]}
     })
-
+    const pages=data?.pages
+    const counts= pages ? pages?.[pages?.length-1]?.['page']*pages?.[pages?.length-1]?.['perPage'] :24;
     return(
             <BoxLayout position={'static'}  display={'flex'} flexDirection={'column'}>
                 <AppBar/>
@@ -59,8 +77,8 @@ const Home: React.FC<Props> = (props) => {
                 <SideBar/>
                 <InfiniteScroll
                     next={fetchNextPage}
-                    dataLength={count}
-                    hasMore={hasNextPage ?? false}
+                    hasMore={hasNextPage}
+                    dataLength={counts}
                     loader={'loading...'}
                 >
 

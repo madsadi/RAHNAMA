@@ -161,7 +161,7 @@ const queryBuilder = (page:string, data:object|null, res:object|null, option?: R
     }
 
     const graphql = jsonToGraphQLQuery(query, { pretty: true });
-    // console.log(graphql,headers);
+    console.log(graphql,headers);
     return { graphql, headers }
 }
 
@@ -178,7 +178,7 @@ export const query = async (page: string, data: object | null, res: object | nul
         const res = axiosBase.post('', { query: `{${graphql}}` }, { headers });
         const { data } = await res;
 
-        return data.data[page];
+        return data?.data?.[page];
     } catch (error) {
         console.log(' error',error)
         throw error

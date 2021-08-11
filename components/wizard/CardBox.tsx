@@ -26,19 +26,7 @@ const ImageData = styled.div `
     border-radius: 15px;
     margin: auto;
     object-fit:contain;
-    &:after{
-        content:'';
-        width:127px;
-        height:127px;
-        z-index:1000;
-        background: linear-gradient(to bottom, rgba(71, 69, 70, 0) 8%, #474546 74%);
-
-    }
-    & img{
-     object-fit: content;
-    height: 100%;
-    border-radius: 15px;
-    }
+   
 `;
 
 const BadgeIcon = styled.img<any>`
@@ -51,10 +39,20 @@ const BadgeIcon = styled.img<any>`
 
 const Label = styled.div `
     position: absolute;
-    bottom: 5%;
-    right: 5%;
+    bottom: 0%;
+    right: 0;
+    left: 0;
+    width:100%;
+    height:30px;
+    line-height:30px;
     font-size: 12px;
     display:flex;
+    align-content:center;
+    padding-right:10px;
+    align-items:center;
+    z-index: ${props=>props.theme.zIndices.dropdown+1};
+    background-image: linear-gradient(to bottom, rgba(71, 69, 70, 0) 3%, #47454682 74%);
+    
 `;
 
 const Where = styled.label`
@@ -85,7 +83,9 @@ function CardBox(props:{post:Post}){
 
     const icon={
         color: "white",
-        width: "12px"
+        width: "12px",
+        lineHeight:'30px'
+
     }
     moment.locale("fa");
     const filters= uniqueArrayByProperty(props.post.filters,((f:Filter)=> {
@@ -97,8 +97,7 @@ function CardBox(props:{post:Post}){
 
     let badge=props.post.badges?.includes('realState') ? '/icons/agency_tag.svg'
     : props.post.badges?.includes('carDealership') ? '/icons/car_tag.svg'
-     : props.post.badges?.includes('newspaper') ? '/icons/newspaper_tag.svg':null;
-    console.log(props.post.badges)
+     : props.post.badges?.includes('newsPaper') ? '/icons/newspaper_tag.svg':null;
 
     return (
 
@@ -115,7 +114,7 @@ function CardBox(props:{post:Post}){
                     <Header className="header">{props.post.name}</Header>
                     <div>
                         {
-                            Object.keys(filters).map((f:string,i)=><FilterRow key={i} label={f} value={filters[f].options[0].value} />)}
+                            Object.keys(filters).map((f:string,i)=><FilterRow key={i} label={f} value={filters[f].options?.[0].value} />)}
                         <Descript className="description">
                             {moment(parseInt(props.post.releasedAt)).fromNow()}
                         </Descript>
