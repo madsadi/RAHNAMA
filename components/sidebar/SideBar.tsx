@@ -57,9 +57,11 @@ import _ from "lodash";
 const SideContent = styled.div`
     right: 0;
     margin-left:auto;
-    overflow-y:scroll;
     z-index: 1015; 
     margin-bottom:30px;
+    display:flex;
+    top:114px;
+    height:895px;
     ${position}
 `
 
@@ -278,17 +280,15 @@ const Apps = styled.div`
 `
 
 const Div = styled.div`
-    border-top-left-radius: 40px;
-    border-bottom-left-radius: 40px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
     position: relative;
     background-color: rgba(71,69,70,0.7);
     backdrop-filter: blur(50px);
     -webkit-backdrop-filter: blur(50px);
     cursor: pointer;
     width:40px;
-    height: 150px;
-    top: 600px;
-    left: 0;
+    height: 120px;
     `;
 
 const Pro = styled.div `
@@ -318,8 +318,56 @@ const Hide = styled.div<DisplayProps | SpaceProps>`
 `
 
 const Shown = styled.div<DisplayProps | SpaceProps>`
-width: 386px;
-${layout}
+    width: 390px;
+    overflow-y: scroll;
+    padding-right: 10px;
+    ${layout}
+`
+
+const CurvedTop = styled.div`
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  
+  &::after{
+  content: "";
+  display: block;
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  border-radius: 20%;
+  bottom: 0;
+  right: 0;
+ box-shadow: 50px 50px 0 0  rgba(71,69,70,0.7);
+   }
+`
+
+const CurvedBottom = styled.div`
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  position: relative;
+  
+  &::after{
+  content: "";
+  display: block;
+  width: 200%;
+  height: 200%;
+  position: absolute;
+  border-radius: 20%;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  right: 0;
+  box-shadow: 50px -50px 0 0  rgba(71,69,70,0.7);
+
+  }
+
+`
+
+const PullDiv = styled.div`
+    margin-top:550px;
 `
 
 function SideBar() {
@@ -385,7 +433,7 @@ function SideBar() {
 
     function _onScroll() {
         console.log(sideRef.current?.offsetTop , window)
-        if (sideRef?.current?.offsetTop < window.scrollY) {
+        if (sideRef?.current?.offsetTop+sideRef.current?.clientHeight < window.scrollY) {
             setPositionSticky(true)
         } else {
             setPositionSticky(false)
@@ -411,10 +459,14 @@ function SideBar() {
 
     return (
         // @ts-ignore
-        <SideContent position={positionSticky? 'fixed':'absolute'} ref={sideRef}>
-            <Div onClick={()=>setDisplay(!display)}>
-                <Pull style={pullbutton}/>
-            </Div>
+        <SideContent position={positionSticky? 'fixed':'absolute'} bottom={positionSticky? '5px':'auto'} ref={sideRef}>
+            <PullDiv>
+                <CurvedTop></CurvedTop>
+                <Div onClick={()=>setDisplay(!display)}>
+                    <Pull style={pullbutton}/>
+                </Div>
+                <CurvedBottom></CurvedBottom>
+            </PullDiv>
             <Side>
                 <Shown display={display ?'block':'none'} >
                     <User>
