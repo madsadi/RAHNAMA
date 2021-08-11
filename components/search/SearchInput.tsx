@@ -112,6 +112,15 @@ const List = styled('ul')({
 
 })
 
+const Remove = styled.button`
+        position: absolute;
+        top: 50%;
+        transform: translate(0,-50%);
+        left: 17%;
+        cursor: pointer;
+        border: none;
+`
+
 
 const CubeBox = styled.div<LayoutProps>`
      {
@@ -280,14 +289,6 @@ const SearchInput: React.FC<SearchProps> = (props) => {
         dispatch(pinSearch(item))
     }
 
-    const cross = {
-        position: "absolute",
-        top: "50%",
-        transform: "translate(0,-50%)",
-        left: "17%",
-        cursor: "pointer"
-    }
-
     return  (
         <Form ref={escape}>
             <FormControl>
@@ -298,7 +299,9 @@ const SearchInput: React.FC<SearchProps> = (props) => {
                     })}
                 </CubeBox>}
                 <Input value={value} onClick={drop} onChange={autocomplete} boxShadow={{shadow}} type="text" placeholder="جستجو"/>
-                <Cross style={cross}></Cross>
+                <Remove type="reset" >
+                    <Cross display={isToggle ? 'block':'none' }/>
+                </Remove>
                 <Button bg={'lipstick'}>
                     <SearchIcon />
                 </Button>
