@@ -5,8 +5,7 @@ import {Filter, Post} from "../../types";
 import FilterRow from "./Meta";
 import moment from "jalali-moment";
 import { uniqueArrayByProperty } from "../../utils/helper";
-
-
+import Image from 'next/image'
 
 
 const Card= styled.div`
@@ -19,55 +18,68 @@ const Card= styled.div`
     height:100%;
 `;
 
-const Image = styled.div `
+const ImageData = styled.div `
     position: relative;
     height: 127px;
     width: 127px;
     overflow: hidden;
     border-radius: 15px;
     margin: auto;
+    object-fit:contain;
+    &:after{
+        content:'';
+        width:127px;
+        height:127px;
+        z-index:1000;
+        background: linear-gradient(to bottom, rgba(71, 69, 70, 0) 8%, #474546 74%);
+
+    }
+    & img{
+     object-fit: content;
+    height: 100%;
+    border-radius: 15px;
+    }
 `;
 
-const BadgeIcon = styled.img`
+const BadgeIcon = styled.img<any>`
     position: absolute;
     top: 0;
     right: 10%;
     width: 20%;
 `;
 
-const Img = styled.img`
-    object-fit: content;
-    height: 100%;
-    border-radius: 15px;
-`;
 
 const Label = styled.div `
     position: absolute;
     bottom: 5%;
     right: 5%;
     font-size: 12px;
+    display:flex;
 `;
 
-const Icon = styled.label`
+const Where = styled.label`
     color: white;
+    margin-right: 5px;
 `;
 
 const Content = styled.div `
     margin-right: 17px;
     flex-basis: 60%;
     flex: 1;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
 `;
 
 const Header = styled.div`
-    fontSize: 15px;
-    margin-bottom: 32px;
+    font-size: 15px;
     color: #474546;
 `;
 
 const Descript = styled.div `
-    color: #db143d;newspaper
+    color: #db143d;
     font-size: 11px;
-    margin: 5px 0;
+    margin-top: 13px;
 `
 function CardBox(props:{post:Post}){
 
@@ -76,35 +88,38 @@ function CardBox(props:{post:Post}){
         width: "12px"
     }
     moment.locale("fa");
-   const filters= uniqueArrayByProperty(props.post.filters,((f:Filter)=> {
+    const filters= uniqueArrayByProperty(props.post.filters,((f:Filter)=> {
         if (f.label){
             return f.label
         }
         return false
     }))
 
-    let badge=props.post.badges?.includes('realState') ?? '/agency_tag.svg'
-     badge=props.post.badges?.includes('carDealership') ?? '/car_tag.svg'
+    let badge=props.post.badges?.includes('realState') ? '/icons/agency_tag.svg'
+    : props.post.badges?.includes('carDealership') ? '/icons/car_tag.svg'
+     : props.post.badges?.includes('newspaper') ? '/icons/newspaper_tag.svg':null;
+    console.log(props.post.badges)
 
     return (
 
             <Card>
-                <Image>
-                    <BadgeIcon src={'/agency_tag_2.png'} alt=""/>
-                    <Img src={'/hi.jpg'} alt=""/>
+                <ImageData className={'dard'}>
+                    {badge && <BadgeIcon src={badge} alt=""/>}
+                    <Image width={'127px'} height={'127px'} src={props.post.pictures?.thumbnail ?props.post.pictures?.thumbnail.thumbnail :'/null.svg'} alt=""/>
                     <Label>
                         <Location style={icon}/>
-
+                        <Where>{props.post.location.cityString}</Where>
                     </Label>
-                </Image>
-
+                </ImageData>
                 <Content className="content">
                     <Header className="header">{props.post.name}</Header>
+                    <div>
                         {
-                            Object.keys(filters).map((f:string)=><FilterRow label={f} value={filters[f].options[0].value} />)}
-                    <Descript className="description">
-                        {moment(parseInt(props.post.releasedAt)).fromNow()}
-                    </Descript>
+                            Object.keys(filters).map((f:string,i)=><FilterRow key={i} label={f} value={filters[f].options[0].value} />)}
+                        <Descript className="description">
+                            {moment(parseInt(props.post.releasedAt)).fromNow()}
+                        </Descript>
+                    </div>
                 </Content>
             </Card>
 
