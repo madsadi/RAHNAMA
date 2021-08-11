@@ -12,7 +12,7 @@ const FilterRow=(props: {label:string, value:any, unit:string} )=>{
             <FilterBox className="meta">
                 <div>{props.label}</div>
                 <div>{props.value}</div>
-                <div>کیلومتر</div>
+                <div>{props.unit}</div>
             </FilterBox>
         </div>
     )

@@ -5,10 +5,9 @@ export function analyzeSearchData(searchItems:SearchItemType[]){
     return []
 }
 export const uniqueArrayByProperty = (array:Array<any>, callback:Function) => {
-
     return array.reduce((prev, item) => {
         const v = callback(item);
-        if (!prev[v]) prev[v]=item
-        return Object.values(prev)
+        if (v && !prev[v]) prev[v]=item
+        return prev
     }, {})
 }

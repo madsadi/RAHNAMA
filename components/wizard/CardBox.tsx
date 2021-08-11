@@ -28,7 +28,7 @@ const Image = styled.div `
     margin: auto;
 `;
 
-const RedIcon = styled.img`
+const BadgeIcon = styled.img`
     position: absolute;
     top: 0;
     right: 10%;
@@ -65,7 +65,7 @@ const Header = styled.div`
 `;
 
 const Descript = styled.div `
-    color: #db143d;
+    color: #db143d;newspaper
     font-size: 11px;
     margin: 5px 0;
 `
@@ -76,22 +76,32 @@ function CardBox(props:{post:Post}){
         width: "12px"
     }
     moment.locale("fa");
-    console.log(uniqueArrayByProperty(props.post.filters,((f:Filter)=>f.label)))
+   const filters= uniqueArrayByProperty(props.post.filters,((f:Filter)=> {
+        if (f.label){
+            return f.label
+        }
+        return false
+    }))
+
+    let badge=props.post.badges?.includes('realState') ?? '/agency_tag.svg'
+     badge=props.post.badges?.includes('carDealership') ?? '/car_tag.svg'
+
     return (
 
             <Card>
                 <Image>
-                    <RedIcon src={'/agency_tag_2.png'} alt=""/>
+                    <BadgeIcon src={'/agency_tag_2.png'} alt=""/>
                     <Img src={'/hi.jpg'} alt=""/>
                     <Label>
                         <Location style={icon}/>
 
                     </Label>
                 </Image>
+
                 <Content className="content">
                     <Header className="header">{props.post.name}</Header>
-                        {uniqueArrayByProperty(props.post.filters,((f:Filter)=>f.label))
-                            .map((f:Filter)=><FilterRow label={f.label} value={f.options[0].value} />)}
+                        {
+                            Object.keys(filters).map((f:string)=><FilterRow label={f} value={filters[f].options[0].value} />)}
                     <Descript className="description">
                         {moment(parseInt(props.post.releasedAt)).fromNow()}
                     </Descript>
