@@ -62,7 +62,7 @@ export const TopSearch: React.FC<Props> = (props)=>{
             bg={'lipstick'}
             backgroundImage={"url('/bg/Path 135.svg')"}
             backgroundRepeat={"no-repeat"}
-            backgroundSize={"300px 300px"}
+            backgroundSize={"311px 334px"}
             height={'365px'}
             ref={topSearchRef}
             justifyContent={'center'}

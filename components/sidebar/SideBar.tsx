@@ -320,7 +320,7 @@ const Hide = styled.div<DisplayProps | SpaceProps>`
     ${layout}
 `
 
-const Shown = styled.div<DisplayProps | SpaceProps>`
+const Shown = styled.div<DisplayProps | SpaceProps| HTMLDivElement>`
     width: 390px;
     overflow-y: scroll;
     padding-right: 10px;
@@ -455,6 +455,22 @@ function SideBar() {
 
     }, []);
 
+    const shownRef=useRef<HTMLDivElement>(null)
+
+    const stopBubblingScroll=function (e:React.SyntheticEvent){
+        if (shownRef.current===null){
+            return;
+        }
+        let height = shownRef.current?.clientHeight,
+            scrollHeight = shownRef.current?.scrollHeight,
+            scrollTop = shownRef.current?.scrollTop
+        ;
+        if (scrollTop+scrollHeight === height){
+            e.preventDefault()
+        }
+        e.stopPropagation();
+    }
+
 
 
 
@@ -469,7 +485,7 @@ function SideBar() {
                 <CurvedBottom></CurvedBottom>
             </PullDiv>
             <Side>
-                <Shown display={display ?'block':'none'} >
+                <Shown ref={shownRef} display={display ?'block':'none'} MouseWeel={stopBubblingScroll} onScroll={stopBubblingScroll} >
                     <User>
                         <Profile>
                             <Ipro></Ipro>
