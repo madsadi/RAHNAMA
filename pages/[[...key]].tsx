@@ -36,7 +36,8 @@ const Home: React.FC<Props> = (props) => {
         let p=context.pageParam ?context.pageParam.page+1 : page+1
         const res=await loadAdvertises({page:p})
         console.log('res',res)
-        return res;
+        if (res)
+            return res;
     }
 
 
@@ -77,7 +78,7 @@ const Home: React.FC<Props> = (props) => {
                 <SideBar/>
                 <InfiniteScroll
                     next={fetchNextPage}
-                    hasMore={hasNextPage}
+                    hasMore={hasNextPage?? true}
                     dataLength={counts}
                     loader={'loading...'}
                 >
@@ -110,6 +111,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     let agent = context.req.headers['user-agent'];
 
     const posts=await loadAdvertises({page:1},{agent})
-
-    return {props:{posts:posts?.data,page:posts.page, count:posts.count, perPage:posts.perPage}}
+    if (posts){
+        return {props:{posts:posts?.data,page:posts?.page, count:posts?.count, perPage:posts?.perPage}}
+    }
+   else
+       return {props:{posts:[],page:0, count:0, perPage:0}}
 }
