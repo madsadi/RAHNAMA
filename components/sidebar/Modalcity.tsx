@@ -4,14 +4,15 @@ import CityForm from "./CityForm";
 import Neighborhood from "./Neighborhood";
 import CityF from '../../public/icons/city.svg';
 import Close from '../../public/icons/Iconly-Curved-Close Square.svg';
-import {layout} from "styled-system";
 import SelectedCity from "./SelectedCity";
 import ChosenList from "./ChosenList";
+import {layout, LayoutProps} from "styled-system";
 
 
-const Modalcity = styled.div`
+
+const ModalcityBox = styled.div<LayoutProps>`
   position: fixed; 
-  z-index: 10;
+  z-index: 1020;
   padding-top: 100px; 
   left: 0;
   top: 0;
@@ -71,7 +72,7 @@ function ModalCity () {
     const [show,setShow]=useState(true);
 
     return (
-        <Modalcity>
+        <ModalcityBox display={show ?'block':'none'}>
             <ModalContent>
                 <Head>
                    <CityF/>
@@ -85,7 +86,7 @@ function ModalCity () {
                 </Info>
                 <ChosenList/>
             </ModalContent>
-        </Modalcity>
+        </ModalcityBox>
     )
 }
 
