@@ -375,7 +375,7 @@ const PullDiv = styled.div`
     margin-top:550px;
 `
 
-function SideBar() {
+export default function SideBar() {
     const icon = {
         position: "absolute",
         left: "0",
@@ -462,7 +462,7 @@ function SideBar() {
     const shownRef=useRef<HTMLDivElement>(null)
 
     const stopBubblingScroll=function (e:React.SyntheticEvent<HTMLDivElement>){
-        console.log('scroll')
+
         if (shownRef.current===null){
             return;
         }
@@ -471,10 +471,11 @@ function SideBar() {
             scrollTop = shownRef.current?.scrollTop
         ;
 
-        if (scrollTop+height === scrollHeight){
+        if (scrollTop+height === scrollHeight || scrollTop===0){
             e.preventDefault()
         }
         e.stopPropagation();
+
     }
 
 
@@ -740,5 +741,3 @@ function SideBar() {
         </div>
     )
 }
-
-export default SideBar;
