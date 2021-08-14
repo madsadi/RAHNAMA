@@ -6,7 +6,8 @@ export default {
     "rial":"{{price, rial}}",
     'text-logo': 'نیـازمندی‌های هـمشـهری',
     wizard:{
-        'register': 'ثـبت آگهـی'
+        'register': 'ثـبت آگهـی',
+        'instant': ' فـوری',
     },
     menu:{
         'magazine': 'مجـله',

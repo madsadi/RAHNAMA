@@ -6,6 +6,7 @@ import FilterRow from "./Meta";
 import moment from "jalali-moment";
 import { uniqueArrayByProperty } from "../../utils/helper";
 import Image from 'next/image'
+import { t } from "../../locales";
 
 
 const Card= styled.div`
@@ -78,6 +79,15 @@ const Descript = styled.div `
     color: #db143d;
     font-size: 11px;
     margin-top: 13px;
+    display:flex;
+    justify-content: space-between
+`
+const InstantBadge=styled.span`
+    background: rgba(219, 20, 61, 0.13);
+    padding: 0.5px 11.6px 0.5px 11.5px;
+    border-radius: 8px;
+    line-height: 18px;
+    height:18px;
 `
 function CardBox(props:{post:Post}){
 
@@ -98,11 +108,12 @@ function CardBox(props:{post:Post}){
     let badge=props.post.badges?.includes('realState') ? '/icons/agency_tag.svg'
     : props.post.badges?.includes('carDealership') ? '/icons/car_tag.svg'
      : props.post.badges?.includes('newsPaper') ? '/icons/newspaper_tag.svg':null;
+    const instant=props.post.badges?.includes('InstantBadge')
 
     return (
 
             <Card>
-                <ImageData className={'dard'}>
+                <ImageData>
                     {badge && <BadgeIcon src={badge} alt=""/>}
                     <Image width={'127px'} height={'127px'} src={props.post.pictures?.thumbnail ?props.post.pictures?.thumbnail.thumbnail :'/null.svg'} alt=""/>
                     <Label>
@@ -117,7 +128,9 @@ function CardBox(props:{post:Post}){
                             Object.keys(filters).map((f:string,i)=><FilterRow key={i} label={f} value={filters[f].options?.[0].value} />)}
                         <Descript className="description">
                             {moment(parseInt(props.post.releasedAt)).fromNow()}
+                            {instant && <InstantBadge>{t('wizard.instant')}</InstantBadge>}
                         </Descript>
+
                     </div>
                 </Content>
             </Card>
