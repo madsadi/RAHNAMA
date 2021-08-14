@@ -34,5 +34,5 @@ deploy-production:
     - main
   script:
     - cd /home/rahnama/Newproject/web
-    - docker-compose restart rahnama_web
+    - docker restart rahnama_web
     
