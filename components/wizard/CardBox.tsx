@@ -89,6 +89,9 @@ const InstantBadge=styled.span`
     line-height: 18px;
     height:18px;
 `
+ const Div = styled.div`
+    width: 80%;
+ `
 function CardBox(props:{post:Post}){
 
     const icon={
@@ -123,7 +126,7 @@ function CardBox(props:{post:Post}){
                 </ImageData>
                 <Content className="content">
                     <Header className="header">{props.post.name}</Header>
-                    <div>
+                    <Div>
                         {
                             Object.keys(filters).map((f:string,i)=><FilterRow key={i} label={f} value={filters[f].options?.[0].value} />)}
                         <Descript className="description">
@@ -131,7 +134,7 @@ function CardBox(props:{post:Post}){
                             {instant && <InstantBadge>{t('wizard.instant')}</InstantBadge>}
                         </Descript>
 
-                    </div>
+                    </Div>
                 </Content>
             </Card>
 
