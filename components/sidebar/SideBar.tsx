@@ -1,6 +1,6 @@
 import React, {UIEvent, useCallback, useEffect, useRef, useState} from "react";
 import styled from "styled-components";
-import {DisplayProps, layout, position, SpaceProps} from "styled-system";
+import {DisplayProps, layout, position, PositionProps, SpaceProps} from "styled-system";
 import ModalCity from "./Modalcity";
 import Ipro from '../../public/icons/Group 1403.svg';
 import Categ from '../../public/icons/iconly_light_outline_category.svg';
@@ -54,7 +54,7 @@ import Blackremove from '../../public/icons/black remove.svg';
 import Dots from '../../public/icons/dots.svg';
 import _ from "lodash";
 
-const SideContent = styled.div`
+const SideContent = styled.div<PositionProps>`
     right: 0;
     max-width:500px;
     z-index: 1015; 
@@ -320,12 +320,12 @@ const Hide = styled.div<DisplayProps | SpaceProps>`
     ${layout}
 `
 
-const Shown = styled.div<DisplayProps | SpaceProps>`
+const Shown = styled.div<DisplayProps | SpaceProps| HTMLElement>`
     width: 390px;
     overflow-y: scroll;
     padding-right: 10px;
-    height:895px;
-    padding-bottom: 100px;
+    height:80vh;
+    margin-bottom: 30px;
     ${layout}
 `
 
@@ -461,7 +461,8 @@ function SideBar() {
 
     const shownRef=useRef<HTMLDivElement>(null)
 
-    const stopBubblingScroll=function (e:React.SyntheticEvent){
+    const stopBubblingScroll=function (e:React.SyntheticEvent<HTMLDivElement>){
+        console.log('scroll')
         if (shownRef.current===null){
             return;
         }
@@ -469,7 +470,8 @@ function SideBar() {
             scrollHeight = shownRef.current?.scrollHeight,
             scrollTop = shownRef.current?.scrollTop
         ;
-        if (scrollTop+scrollHeight === height){
+
+        if (scrollTop+height === scrollHeight){
             e.preventDefault()
         }
         e.stopPropagation();
@@ -490,7 +492,7 @@ function SideBar() {
                     <CurvedBottom></CurvedBottom>
                 </PullDiv>
                 <Side >
-                    <Shown ref={shownRef} display={display ?'block':'none'} MouseWeel={stopBubblingScroll} onScroll={stopBubblingScroll} >
+                    <Shown ref={shownRef} display={display ?'block':'none'} onWheel={stopBubblingScroll} onScroll={stopBubblingScroll} >
                         <User>
                             <Profile>
                                 <Ipro></Ipro>

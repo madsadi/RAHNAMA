@@ -6,11 +6,11 @@ import CityF from '../../public/icons/city.svg';
 import Close from '../../public/icons/Iconly-Curved-Close Square.svg';
 import SelectedCity from "./SelectedCity";
 import ChosenList from "./ChosenList";
-import {layout} from "styled-system";
+import {layout, LayoutProps} from "styled-system";
 
 
 
-const ModalcityBox = styled.div`
+const ModalcityBox = styled.div<LayoutProps>`
   position: fixed; 
   z-index: 1020;
   padding-top: 100px; 
