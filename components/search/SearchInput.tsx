@@ -158,6 +158,8 @@ const CubeBox = styled.div<LayoutProps>`
         align-items:center;
         text-decoration:none;
         text-shadow: none;
+        background:${props => props.theme.colors.paleGrey};
+        -webkit-font-smoothing: subpixel-antialiased;
      }
       & .face-1{
         -webkit-transform:translateZ(30px);
