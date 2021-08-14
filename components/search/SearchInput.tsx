@@ -75,6 +75,10 @@ const Input = styled.input<HTMLInputElement | ShadowProps>`
         height:15px;
         -webkit-appearance: none;
     }
+    &::-webkit-input-placeholder {
+        font-family: dana;
+    }
+
     ${shadow}
 `
 

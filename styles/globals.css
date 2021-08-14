@@ -22,7 +22,9 @@ a {
 
 * {
   box-sizing: border-box;
+  font-family: dana;
 }
+
 .container{
   width: 100%;
   padding-right: 15px;
