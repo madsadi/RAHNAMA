@@ -35,3 +35,4 @@ deploy-production:
   script:
     - cd /home/rahnama/Newproject/web
     - docker-compose restart rahnama_web
+    
