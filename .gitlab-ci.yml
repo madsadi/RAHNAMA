@@ -1,0 +1,37 @@
+stages:
+  - build
+  - deploy
+
+before_script:
+  - mkdir -p node_modules/
+
+cache:
+  paths:
+    - node_modules/
+
+build-production:
+  stage: build
+  tags:
+    - Newsite
+    - rahnama
+  only:
+    - main
+  script:
+    - mkdir -p node_modules/
+    - mkdir -p /home/rahnama/Newproject/web
+    - rm -rf /home/rahnama/Newproject/web/*
+    - cp -r ./* /home/rahnama/Newproject/web/
+    - cd /home/rahnama/Newproject/web/
+    - npm install --force
+    - npm run build
+
+deploy-production:
+  stage: deploy
+  tags:
+    - Newsite
+    - rahnama
+  only:
+    - main
+  script:
+    - cd /home/rahnama/Newproject/web
+    - docker-compose restart rahnama_web
