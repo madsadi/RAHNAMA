@@ -1,6 +1,7 @@
-import React from "react";
+import React, {useState} from "react";
 import Search from "../../public/icons/search yellow.svg";
 import styled from "styled-components";
+import {layout, DisplayProps, SpaceProps} from "styled-system";
 
 const InputText = styled.input `
     width: 100%;
@@ -24,9 +25,9 @@ const Input = styled.div`
 `
 
 
-const CityF = styled.div`
+const CityF = styled.div<DisplayProps | SpaceProps>`
     position: relative;
-    
+    ${layout}
 `
 
 const List = styled.ul`
@@ -68,16 +69,18 @@ function CityForm () {
         cursor: "pointer"
     }
 
+    const [show,setShow]=useState(true);
+
 
     return(
-        <CityF>
+        <CityF display={show ?'block':'none'}>
             <Input>
                 <InputText type="text" placeholder="جستجو شهر"/>
                 <Search style={icon}/>
             </Input>
             <Div>
                 <List>
-                    <Li>تهران</Li>
+                    <Li onClick={()=>setShow(!show)}>تهران</Li>
                     <Li>شیراز</Li>
                     <Li>اصفهان</Li>
                     <Li>تهران</Li>
