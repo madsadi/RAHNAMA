@@ -570,7 +570,7 @@ export default function SideBar() {
                             <CityPrice>
                                 <WithFilter>
                                     <Heading>
-                                        <Span>شهر ،محله<Yellow>( 2شهر و 20 محله )</Yellow></Span>
+                                        <Span>شهر ،محله<Yellow>( 2شهر و 10 محله )</Yellow></Span>
                                         <Blackremove style={icon3}/>
                                     </Heading>
                                     <FiltersContain>
