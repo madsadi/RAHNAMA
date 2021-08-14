@@ -85,8 +85,8 @@ const Li=styled.li`
     font-size: 16px;
     margin-bottom: 12px;
     padding-bottom: 10px;
-    margin-left:36.5px;
-    margin-right: 31px
+    margin-left:  19.5px;
+    margin-right: 17px
     }
     &:not(:last-of-type) {
         border-bottom: ${(props) => `1px solid ${props.theme.colors['paleGrey']}`};

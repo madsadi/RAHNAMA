@@ -50,7 +50,7 @@ const Label = styled.div `
     align-content:center;
     padding-right:10px;
     align-items:center;
-    z-index: ${props=>props.theme.zIndices.dropdown+1};
+    z-index: ${props=>props.theme.zIndices.dropdown-1};
     background-image: linear-gradient(to bottom, rgba(71, 69, 70, 0) 3%, #47454682 74%);
     
 `;

@@ -122,18 +122,10 @@ const Drop = styled.div<DisplayProps | SpaceProps>`
 
 const List = styled('ul')({
     maxHeight: '469px',
-    margin:0
+    margin:0,
+    paddingRight:0
 
 })
-
-const Remove = styled.button`
-        position: absolute;
-        top: 50%;
-        transform: translate(0,-50%);
-        left: 17%;
-        cursor: pointer;
-        border: none;
-`
 
 
 const CubeBox = styled.div<LayoutProps>`
