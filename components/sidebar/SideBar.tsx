@@ -1,16 +1,16 @@
 import React, {UIEvent, useCallback, useEffect, useRef, useState} from "react";
 import styled from "styled-components";
-import {DisplayProps, layout, position, PositionProps, SpaceProps} from "styled-system";
+import {DisplayProps, layout, LayoutProps, position, PositionProps, SpaceProps} from "styled-system";
 import ModalCity from "./Modalcity";
 import Ipro from '../../public/icons/Group 1403.svg';
 import Categ from '../../public/icons/iconly_light_outline_category.svg';
 import ArrowLeft from '../../public/icons/Stroke 3.svg';
-import RealState from '../../public/icons/Group 1402.svg';
+import RealState from '../../public/icons/1402.svg';
 import Transportation from '../../public/icons/Group 1404.svg';
 import Hire from '../../public/icons/Group 1405.svg';
 import Stuff from '../../public/icons/Group 1406.svg';
 import Furniture from '../../public/icons/Group 1407.svg';
-import Service from '../../public/icons/Group 1408.svg';
+import Service from '../../public/icons/1408.svg';
 import Personalstuff from '../../public/icons/Group 1409.svg';
 import Business from '../../public/icons/Group 1410.svg';
 import Industry from '../../public/icons/Group 1411.svg';
@@ -31,28 +31,12 @@ import Ios from '../../public/icons/Group 1420.svg';
 import Bazar from '../../public/icons/Group 1421.svg';
 import He from '../../public/icons/Path 135.svg';
 import Pull from '../../public/icons/Group 1422.svg';
-import A from '../../public/icons/real.svg';
-import B from '../../public/icons/trans.svg';
-import C from '../../public/icons/3.svg';
-import D from '../../public/icons/4.svg';
-import E from '../../public/icons/5.svg';
-import F from '../../public/icons/rules.svg';
-import G from '../../public/icons/pricing.svg';
-import H from '../../public/icons/locations.svg';
-import I from '../../public/icons/fun.svg';
-import J from '../../public/icons/filters.svg';
-import K from '../../public/icons/companies.svg';
-import L from '../../public/icons/clothes.svg';
-import M from '../../public/icons/about.svg';
-import N from '../../public/icons/support.svg';
-import O from '../../public/icons/6.svg';
-import P from '../../public/icons/travel.svg';
-import Q from '../../public/icons/pro.svg';
-import R from '../../public/icons/profile.svg';
 import Whiteremove from '../../public/icons/white remove.svg';
 import Blackremove from '../../public/icons/black remove.svg';
 import Dots from '../../public/icons/dots.svg';
 import _ from "lodash";
+import Image from 'next/image'
+import {useRouter} from "next/router";
 
 const SideContent = styled.div<PositionProps>`
     right: 0;
@@ -60,7 +44,7 @@ const SideContent = styled.div<PositionProps>`
     z-index: 1015; 
     margin-bottom:30px;
     display:flex;
-    top:114px;
+    top:12vh;
     ${position}
 `
 
@@ -139,7 +123,6 @@ const Li = styled.li `
     display:flex;
     margin:10px 0;
     padding-bottom:10px;
-    
     &:not(:last-child)::after {
     content: '';
     display: block;
@@ -159,33 +142,68 @@ const Lii = styled.li `
     
 `
 
-const Liii = styled.li`
-    position: relative;
+const Liii = styled.li<LayoutProps>`
     cursor: pointer;
-    height: 40px;
-
+    flex:1 1;
+    max-width:3.4vh;
     &:not(:last-child)::after {
     content: '';
     display: block;
-    height: 2px;
     background: #f5f6fa;
     opacity: 9%;
-    width: 20px;
     position: 50%;
-    position: absolute;
     bottom:4px;
     right:50%;
     transform: translate(50%,0);
 }    
+${layout}
+&.category{
+      position:relative;
+      &::after {
+        content: "";
+        display: block;
+        background-color: #f5f6fa;
+        height: 2px;
+        border-radius: 2px;
+        width: 12px;  
+        position: absolute;
+        bottom:4px;
+        right:50%;
+        transform: translate(50%,0);
 
+    }
+}
+    
+&.main-divider{
+  position:relative;
+  margin-bottom:5px;
+  &::after {
+    margin-top:5px;
+    opacity:1;
+    content: "";
+    display: block;
+    background-color: #2d2c2c;
+    height: 3px;
+    border-radius: 2px;
+    width: 100%;  
+    position: absolute;
+    bottom:0;
+    right:50%;
+    transform: translate(50%,0);
+
+  }
+}
 `
 
 
-const Ul = styled.ul`
-    list-style-type: none;
+const Ul = styled.ul<LayoutProps>`
+        list-style-type: none;
         direction:rtl;
         padding-right:0;
-        margin: 0;
+        margin: 0 2vh 0 2.4vh;
+        display:flex;
+        flex-direction:column;
+        ${layout}
 `
 
 const CityPrice = styled.div`
@@ -217,14 +235,6 @@ const WithoutFilter = styled.div`
 const FiltersContain = styled.div`
     display: flex;
 `
-
-// const InputPrice = styled.input`
-//     background: transparent;
-//     border-bottom: 1px solid rgba(255,255,255,0.5) !important;
-//     margin-right:10px;
-//     border: none;
-//     width:120px;
-// `
 
 const Ones = styled.div`
     display: flex;
@@ -295,37 +305,15 @@ const Div = styled.div`
     height: 120px;
     `;
 
-const Pro = styled.div `
-    position: relative;
-    cursor: pointer;
-    &::after {
-        content: "";
-        display: block;
-        background-color: rgba(71,69,70);
-        height: 2px;
-        border-radius: 2px;
-        width: 40px;  
-        position: absolute;
-        bottom:4px;
-        right:50%;
-        transform: translate(50%,0);
-
-    }
-`
-
-
-const Hide = styled.div<DisplayProps | SpaceProps>`
-    margin: 20px;
-    text-align: center;
-    ${layout}
-`
 
 const Shown = styled.div<DisplayProps | SpaceProps| HTMLElement>`
     width: 390px;
     overflow-y: scroll;
     padding-right: 10px;
-    height:80vh;
+    height:85vh;
     margin-bottom: 30px;
+    display:flex;
+    flex-direction:column;
     ${layout}
 `
 
@@ -371,8 +359,11 @@ const CurvedBottom = styled.div`
 
 `
 
-const PullDiv = styled.div`
-    margin-top:550px;
+const PullDiv = styled.div`   
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    padding-bottom:10vh;
 `
 
 export default function SideBar() {
@@ -433,6 +424,8 @@ export default function SideBar() {
     const [display,setDisplay]=useState(true);
     const [show,setShow]=useState(false);
 
+     const router=useRouter()
+
     const onShow = () => {
         if(!show) setShow(true);
         else setShow(false);
@@ -487,7 +480,7 @@ export default function SideBar() {
             <SideContent position={'fixed'}>
                 <PullDiv>
                     <CurvedTop></CurvedTop>
-                    <Div onClick={()=>setDisplay(!display)}>
+                        <Div onClick={()=>setDisplay(!display)}>
                         <Pull style={pullbutton}/>
                     </Div>
                     <CurvedBottom></CurvedBottom>
@@ -673,68 +666,67 @@ export default function SideBar() {
                             </div>
                         </Footer>
                     </Shown>
-                    <Hide display={!display ?'block':'none'} >
-                        <Pro>
-                            <R style={{marginBottom: "4px"}}/>
-                        </Pro>
-                        <Pro>
-                            <Ul>
-                                <Liii>
-                                    <Q/>
+                     <Ul display={display ?'none':'flex'}>
+                                <Liii className={'main-divider'}>
+                                    <Image src={'/icons/profile.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <A/>
+
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/pro.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <B/>
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/real.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <C/>
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/trans.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <D/>
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/5.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <E/>
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/4.svg'} width={'100%'} height={'100%'}/>
+                                </Liii >
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/rules.svg'} width={'100%'} height={'100%'}/>
+                                </Liii >
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
+                                </Liii >
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
+                                </Liii >
+                                <Liii  className={"category"}>
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
+                                </Liii >
+
+                                <Liii className={"main-divider"}>
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <L/>
+
+                                <Liii className={'main-divider'}>
+                                    <Image src={'/icons/filters.svg'} width={'100%'} height={'100%'} />
                                 </Liii>
-                                <Liii>
-                                    <K/>
+
+                                <Liii >
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <I/>
+                                <Liii >
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
-                                <Liii>
-                                    <P/>
+                                <Liii >
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
+                                </Liii>
+                                <Liii >
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
+                                </Liii>
+                                <Liii className={'main-divider'}>
+                                    <Image src={'/icons/pricing.svg'} width={'100%'} height={'100%'}/>
+                                </Liii>
+                                <Liii >
+                                    <Image src={'/icons/6.svg'} width={'100%'} height={'100%'}/>
                                 </Liii>
                             </Ul>
-                        </Pro>
-                        <Pro>
-                            <J style={{marginBottom: "4px"}}/>
-                        </Pro>
-                        <Pro>
-                            <Ul>
-                                <Liii>
-                                    <G/>
-                                </Liii>
-                                <Liii>
-                                    <F/>
-                                </Liii>
-                                <Liii>
-                                    <H/>
-                                </Liii>
-                                <Liii>
-                                    <M/>
-                                </Liii>
-                                <Liii>
-                                    <N/>
-                                </Liii>
-                            </Ul>
-                        </Pro>
-                        <O style={{marginBottom: "4px",cursor: "pointer"}}/>
-                    </Hide>
+
                 </Side>
             </SideContent >
             {show ? <ModalCity/> : null }
